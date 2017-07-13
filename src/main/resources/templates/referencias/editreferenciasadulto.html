@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf/extras/springsecurity">
+<head>
+<meta charset="UTF-8" />
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+<title>Ficha Admision Principal</title>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<link href="../static/css/materialize.css"
+	th:href="@{/css/materialize.css}" type="text/css" rel="stylesheet"
+	media="screen,projection" />
+<link href="../static/css/style.css" th:href="@{/css/style.css}"
+	type="text/css" rel="stylesheet" media="screen,projection" />
+
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="../static/js/materialize.js" th:src="@{/js/materialize.js}"></script>
+<script src="../static/js/init.js" th:src="@{/js/init.js}"></script>
+
+<script type="text/javascript">
+	$(".button-collapse").sideNav();
+</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('select').material_select();
+
+	});
+</script>
+</head>
+<body>
+	<div th:replace="fragments/header ::nav">&nbsp;</div>
+	<!--   cuerpo del trabajo   -->
+	<div class="container">
+		<div class="section">
+			<h1>Datos Clinicos</h1>
+			<form class="col s12" role="form" th:object="${fichaadmision}"
+				th:action="@{/referencias/editreferenciasadulto/update}" method="post">
+				 <input type="hidden" th:field="*{idFicha}"/>
+				<div class="section">
+					<div class="row">
+						<div class="input-field col s4">
+							<i class="material-icons prefix">toc</i> <select
+								name="referenciasIdreferencias" th:field="*{referenciasIdreferencias}"
+							    id="referencias"
+								onChange="onstatechange(this)">
+								<option value="" th:disabled="disabled" th:selected="selected">Referencias
+									</option>
+								<option th:each="referencias : ${referencia}"
+									th:value="${referencias.idreferencias}"
+									th:text="${referencias.nombres}"></option>
+
+							</select> <label for="referencias">Referencias</label>
+
+						</div>
+
+					</div>
+
+
+
+				</div>
+				<div class="section">
+					<div class="row">
+						<div class="icon-block">
+							<h5 class="left">Motivo de Consulta</h5>
+						</div>
+
+					</div>
+					<div class="row">
+						<div class="input-field col s6">
+							<input name="motivoConsulta" th:field="*{motivoConsulta}" type="radio" id="idmot" value="Dolor" /> <label
+								for="idmot">a. Dolor</label>
+
+						</div>
+						<div class="input-field col s6">
+							<input name="motivoConsulta" th:field="*{motivoConsulta}" type="radio" id="idmot1" value="Problema función" /> <label
+								for="idmot1">b. Problema función</label>
+
+						</div>
+
+					</div>
+					<div class="row">
+						<div class="input-field col s6">
+							<input name="motivoConsulta" th:field="*{motivoConsulta}" type="radio" id="idmot2" value="Estética" /> <label
+								for="idmot2">c. Estética</label>
+
+						</div>
+						<div class="input-field col s6">
+							<input name="motivoConsulta" type="radio" id="idmot3" value="Chequeo General" /> <label
+								for="idmot3">d. Chequeo General</label>
+
+						</div>
+
+					</div>
+					<div class="row">
+						<div class="input-field col s6">
+							<input name="motivoConsulta" th:field="*{motivoConsulta}" type="radio" id="idmot4" value="Problema de encías" /> <label
+								for="idmot4">e. Problema de encías</label>
+
+						</div>
+						<div class="input-field col s6">
+							<input name="motivoConsulta" th:field="*{motivoConsulta}" type="radio" id="idmot5" value="Endodoncia"/> <label
+								for="idmot5">f. Endodoncia</label>
+
+						</div>
+
+					</div>
+					<div class="row">
+						<div class="input-field col s6">
+							<input name="motivoConsulta" th:field="*{motivoConsulta}" type="radio" id="idmot6" value="Caries" /> <label
+								for="idmot6">e. Caries</label>
+
+						</div>
+						<div class="input-field col s6">
+							<input name="motivoConsulta" th:field="*{motivoConsulta}" type="radio" id="idmot7" value="Extracción dental" /> <label
+								for="idmot7">h. Extracción dental</label>
+
+						</div>
+
+					</div>
+				</div>
+				
+				<div class="section">
+					<div class="row">
+						<div class="input-field col s12">
+			      <i class="material-icons prefix">mode_edit</i>
+                  <textarea id="Henfe" name="historiaPEnfermedad" th:field="*{historiaPEnfermedad}" class="materialize-textarea"></textarea>
+                  <label for="Henfe">Historia de la presente enfermedad</label>
+              </div>
+					
+					</div>
+				
+				</div>
+				   <div class="row">
+			    	      <button type='submit'  class='btn waves-effect blue' name="action" id="btnEmpty">Guardar
+			    	      <i class="material-icons right">send</i>
+			    	      </button>
+    	    	
+    				</div>
+			</form>
+			<!-- fin del cuerpo del trabajo -->
+		</div>
+		<br />
+		<br />
+	</div>
+	<div th:replace="fragments/footer ::footer">&nbsp;</div>
+
+	<!--llamada de script -->
+
+</body>
+</html>

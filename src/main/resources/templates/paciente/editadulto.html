@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf/extras/springsecurity">
+<head>
+<meta charset="UTF-8"/>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Ficha Admision Principal</title>
+  
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link href="../static/css/materialize.css" th:href="@{/css/materialize.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../static/css/style.css" th:href="@{/css/style.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+	
+	
+ <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+   <script src="../static/js/materialize.js" th:src="@{/js/materialize.js}"></script>
+   <script src="../static/js/init.js" th:src="@{/js/init.js}"></script>
+ 
+<script type="text/javascript">
+$(".button-collapse").sideNav();
+</script> 
+<script type="text/javascript">
+  	$(document).ready(function() {
+    $('select').material_select();
+    	
+  });
+  	
+  	
+  	
+   
+ </script>
+</head>
+<body>
+	<div th:replace="fragments/header ::nav">&nbsp;</div>
+ <!--   cuerpo del trabajo   -->
+	<div class="container">
+    <div class="section">
+    <!-- titulo del reporte -->
+    <h1>Registro De Paciente Adulto </h1>
+    <!-- formulario -->
+    
+      <form class="col s12" role="form" th:object="${paciente}" th:action="@{/paciente/editaadulto/update}"  method="post">
+    <input type="hidden" th:field="*{idpac}"/>
+    <div class="section">
+    	<div class="row">
+    		<div class="input-field col s6 right">
+    			<i class="material-icons prefix">person_pin</i>
+     			<input type="text"   id="nexp"  th:field="*{numExpediente}"  disabled="disabled"/>
+    	    	<label for="nexp" >Numero Expediente</label>
+    		</div>
+    	</div>
+    		<div class="row">
+    		    <div class="input-field col s6 right" >
+     	    <i class="material-icons prefix">today</i>
+     		<input id="fechaing"  type="date" class="datepicker"  th:field="*{fechaIngreso}"  disabled="disabled" />
+     		<label for="fechaing" ></label>
+    	
+    		</div>
+    		</div>
+    		
+    
+    
+     </div>
+    
+    <div class="section">
+    	<div class="row">
+  	
+          <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
+            <h5 class="center">Datos personales</h5>
+          
+         </div>
+ 	
+ 		</div>
+    	
+    	<div class="row">
+ 			<div class="input-field col s6">
+		     <i class="material-icons prefix">person_pin</i>
+		     <input id="icon_prefix" th:field="*{dui}" name="dui" type="text" class="validate"/>
+		     <label for="icon_prefix"  th:value="dui">DUI</label>
+		    </div>
+     	</div>
+     	<div class="row">
+	  		<div class="input-field col s6">
+	          <i class="material-icons prefix">account_circle</i>
+	          <input id="icon_prefix"  name="nombre1" th:field="*{nombre1}" type="text" class="validate"/>
+	          <label for="icon_prefix"  >Primer nombre</label>
+	        </div>
+	        <div class="input-field col s6">
+	          <i class="material-icons prefix">account_circle</i>
+	          <input id="icon_prefix" name="nombre2" th:field="*{nombre2}" type="text" class="validate"/>
+	          <label for="icon_prefix" >Segundo nombre</label>
+	        </div>
+ 		
+ 		</div>
+ 		<div class="row">
+ 			<div class="input-field col s6">
+	          <i class="material-icons prefix">account_circle</i>
+	          <input id="icon_prefix" name="apellido1" th:field="*{apellido1}" type="text" class="validate"/>
+	          <label for="icon_prefix"  >Primer apellido</label>
+	        </div>
+	        <div class="input-field col s6">
+	          <i class="material-icons prefix">account_circle</i>
+	          <input id="icon_prefix" name="apellido2" th:field="*{apellido2}" type="text" class="validate"/>
+	          <label for="icon_prefix"  >Segundo apellido</label>
+	        </div>
+ 		
+ 		</div>
+ 		<div class="row">
+ 			<div class="input-field col s4">
+	     	<i class="material-icons prefix">person_pin</i>
+	     	  
+			  <select name="sexo" id="idsex" th:field="*{sexo}">
+			    <option value="" th:disabled="disabled" th:selected="selected">Sexo</option>
+			    <option value="1" >Masculino</option>
+			    <option value="2" >Femenino</option> 
+			  </select>
+			  <label for="idsex">Sexo del paciente</label>
+			 </div>
+		</div>
+		<div class="row">
+			 <div class="input-field col s4">
+		     	<i class="material-icons prefix">today</i>
+		     	
+				<input id="fechaNacimiento"   name="fechaNacimiento" type="date" class="datepicker" />
+				<label class="active" for="fechaNacimiento"  >Fecha Nacimiento</label>
+				
+			</div>
+	
+			<div class="input-field col s4">
+		     	<i class="material-icons prefix">today</i>
+				<input  name="edad" id="edad" type="number"  onblur="calcularEdad()" />
+		     	<label class="active" for="edad">Edad</label>
+			</div>
+			 
+			 
+	    </div>
+	    <div class="row">
+	    	<div class="input-field col s4">
+		     	<i class="material-icons prefix">person_pin</i>
+		     	  
+				   <select  name="estadoCivil"  th:field="*{idestadocivil}" id="estadocivil" onChange="onstatechange(this)" >
+				    <option value="" th:disabled="disabled" th:selected="selected">Estado Civil</option>
+				    <option th:each="estadocivil : ${estadoc}" th:value="${estadocivil.idEstadoCivil}" th:text="${estadocivil.nomEstado}"></option>
+				    <!-- <option value="1" >Masculino</option>
+				    <option value="2" >Femenino</option>--> 
+				  </select>
+				  <label for="idDepN">Estado Civil</label>
+			 </div>
+			 <div class="input-field col s4">
+		     	<i class="material-icons prefix">person_pin</i>
+		     	  
+				   <select  name="profecion"  th:field="*{profecionIdprofecion}" id="profecion" onChange="onstatechange(this)" >
+				    <option value="" th:disabled="disabled" th:selected="selected">Profecion</option>
+				    <option th:each="profecion : ${profecion}" th:value="${profecion.idprofecion}" th:text="${profecion.nombreprofesion}"></option>
+				    <!-- <option value="1" >Masculino</option>
+				    <option value="2" >Femenino</option>--> 
+				  </select>
+				  <label for="profecion">Estado Civil</label>
+			 </div>
+	    
+	    </div>
+ 		<!-- Aqui ira lo del embarazo pendiente -->
+    
+    	
+    </div>
+    <div class="section">
+    	<div class="row">
+    		<div class="icon-block">
+		  		<h5 class="left">Datos de residencia</h5>
+		  	</div>
+    	
+    	</div>
+    	<div class="row">
+    		<div class="input-field col s12 m6">
+		     	<i class="material-icons prefix">info</i>
+		     	  
+				  <select  name="departamento" id="departamento" th:field="*{departamento}" onChange="onstatechange(this)" >
+				    <option value="" th:disabled="disabled" th:selected="selected">Departamento de Nacimiento</option>
+				    <option th:each="departamento : ${departamentos}" th:value="${departamento.idDepartamento}" th:text="${departamento.nombre}"></option>
+				    <!-- <option value="1" >Masculino</option>
+				    <option value="2" >Femenino</option>--> 
+				  </select>
+				  <label for="departamento">Departamento de Nacimiento</label>
+			 </div>
+			 
+			 <div class="input-field col s12 m6 ">
+		     	  
+				  <select class="browser-default" name="munDomicilio" id="municipios" th:field="*{munDomicilio}"  >
+				  	<option value="">Municipio de nacimiento</option>
+				  </select>
+				  
+			 </div>
+    	
+    	</div>
+    
+    </div>
+      <div class="section">
+    	<div class="row">
+    		<div class="icon-block">
+		  		<h5 class="left">Datos de domicilio</h5>
+		  	</div>
+    	
+    	</div>
+    	<div class="row">
+    		<div class="input-field col s12 m6">
+		     	<i class="material-icons prefix">info</i>
+		     	  
+				  <select  name="departamento" id="departamento" th:field="*{departamento}" onChange="onstatechange(this)" >
+				    <option value="" th:disabled="disabled" th:selected="selected">Departamento de Residencia</option>
+				    <option th:each="departamento : ${departamentos}" th:value="${departamento.idDepartamento}" th:text="${departamento.nombre}"></option>
+				    <!-- <option value="1" >Masculino</option>
+				    <option value="2" >Femenino</option>--> 
+				  </select>
+				  <label for="departamento">Departamento de residencia</label>
+			 </div>
+			 
+			 <div class="input-field col s12 m6 ">
+		     	  
+				  <select class="browser-default" name="munDomicilio" id="municipios" th:field="*{munDomicilio}"  >
+				  	<option value="">Municipio de residencia</option>
+				  </select>
+				  
+			 </div>
+    	
+    	</div>
+    	<!-- falta lo demas -->
+    	<div class="row">
+    		<div class="input-field col s4">
+		     	<i class="material-icons prefix">phone</i>
+		     	
+				 <input id="idtelefono" th:field="*{telefonoMovil}" name="telefoMovil" type="tel" />
+		     	<label for="idtelefono"  >Telefono movil</label>
+			</div>
+			<div class="input-field col s4">
+		     	<i class="material-icons prefix">phone</i>
+		     	
+				 <input id="idtelefonoR" th:field="*{telefonoDom}" name="telefonoDom" type="tel" />
+		     	<label for="idtelefonoR"  >Telefono Residencia</label>
+			</div>
+			<div class="input-field col s4">
+		     	<i class="material-icons prefix">email</i>
+		     	
+				 <input id="idemail" th:field="*{email}" name="email" type="email" />
+		     	<label for="idemail"  >Correo electronico</label>
+			</div>
+    	
+    	
+    	</div>
+    	
+    	<div class="row">
+    		<div class="icon-block">
+	  		<h5 class="left">Usted ya ha asistido a la Facultad de Odontologia con anterioridad</h5>
+	  		
+	  		</div>
+    	
+    	
+    	</div>
+    	 <div class="row">
+		    <div class="input-field col s12">
+		    	<input name="si" type="radio" id="radio1"/>
+		    	<label for="radio1">Si</label>
+		    	<input name="si" type="radio" id="radio2"/>
+		    	<label for="radio2">No</label>
+    
+    		</div>
+    	
+    	
+    	</div>
+    	
+    	<div class="row">
+    		<div class="input-field col s6">
+          		<i class="material-icons prefix">mode_edit</i>
+         		<textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+          		<label for="icon_prefix2">Tratamiento realizado</label>
+       		 </div>
+    	
+    	</div>
+    	</div>
+    <div class="row">
+    	 <button class="btn waves-effect waves-light" type="submit" name="action">Actualizar
+   			 <i class="material-icons right">send</i>
+  		</button>
+    
+    </div>
+
+    </form>
+      <!-- fin del cuerpo del trabajo -->
+    </div>
+    <br/><br/>
+  </div>
+	
+	
+	
+	<div th:replace="fragments/footer ::footer">&nbsp;</div>
+	
+ <!--llamada de script --> 
+ <script type="text/javscript">
+	$(function() { Materialize.updateTextFields(); }); 
+</script>
+<script type="text/javascript">
+$('.datepicker').pickadate({
+    monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+	weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mir', 'Jue', 'Vie', 'Sab'],
+	today: 'Hoy',
+    clear: 'Limpiar',
+    close: 'Cancelar',
+	selectMonths: true, // Creates a dropdown to control month
+    selectYears: 99,
+    format: 'mm/dd/yyyy',
+   
+    formatSubmit: 'yyyy-mm-dd'// Creates a dropdown of 15 years to control year
+    
+  });
+
+</script>
+<script text="text/javascript"  th:inline="javascript">
+/*<![CDATA[*/
+function sendAjaxRequest(){
+	var departamento=$("#departamento").val();
+	$.get("/fichaadmision/municipios?departamento="+departamento, function(data){
+		$("#municipios").empty();
+				
+		
+			data.forEach(function(item, i){
+				var option= "<option value="+item+">"+item+"</option>";
+				$("#municipios").append(option);
+				
+				
+			});
+		
+		
+	});
+	
+};
+
+	
+	
+	$(document).ready(
+		function(){
+			 $('select').material_select();
+			$("#departamento").change(function(){
+				sendAjaxRequest()
+			});
+			
+			
+		}		
+	
+	);
+	
+	
+	
+	  /*]]>*/
+
+</script>
+<script text="text/javascript"  th:inline="javascript">
+/*<![CDATA[*/
+	function calcularEdad(){
+	//var fecha=document.getElementById("fechaNacimiento").value;
+	var fecha=$('#fechaNacimiento').val();
+	var values=fecha.split("/");
+	var mes=values[0];
+	var dia=values[1];
+	var anio=values[2];
+	
+	//recoger valores actuales
+	var fecha_hoy=new Date();
+    var ahora_ano = fecha_hoy.getYear();
+
+    var ahora_mes = fecha_hoy.getMonth()+1;
+
+    var ahora_dia = fecha_hoy.getDate();
+    
+    // realizamos el calculo
+
+    var edad = (ahora_ano + 1900) - anio;
+
+    if ( ahora_mes < mes )
+    {
+        edad--;
+    }
+    if ((mes == ahora_mes) && (ahora_dia < dia))
+    {
+        edad--;
+    }
+
+    if (edad > 1900)
+    {
+        edad -= 1900;
+    }
+    // calculamos los meses
+    var meses=0;
+    if(ahora_mes>mes)
+        meses=ahora_mes-mes;
+    if(ahora_mes<mes)
+        meses=12-(mes-ahora_mes);
+    if(ahora_mes==mes && dia>ahora_dia)
+        meses=11;
+
+
+    // calculamos los dias
+    var dias=0;
+    if(ahora_dia>dia)
+        dias=ahora_dia-dia;
+    if(ahora_dia<dia)
+    {
+
+        ultimoDiaMes=new Date(ahora_ano, ahora_mes, 0);
+
+        dias=ultimoDiaMes.getDate()-(dia-ahora_dia);
+
+    }
+ //   document.getElementById("edad").value=edad;
+   $('#edad').val(edad); 
+}
+	
+ /*]]>*/
+
+</script>	
+</body>
+</html>
+    
+

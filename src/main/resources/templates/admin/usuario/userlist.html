@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf/extras/springsecurity">
+<head>
+<meta charset="UTF-8"/>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Ficha Admision Principal</title>
+  
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link href="../static/css/materialize.css" th:href="@{/css/materialize.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../static/css/style.css" th:href="@{/css/style.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+	
+	
+ <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+   <script src="../static/js/materialize.js" th:src="@{/js/materialize.js}"></script>
+   <script src="../static/js/init.js" th:src="@{/js/init.js}"></script>
+ 
+<script type="text/javascript">
+$(".button-collapse").sideNav();
+</script> 
+
+
+</head>
+<body>
+	<div th:replace="fragments/header ::nav">&nbsp;</div>
+ <!--   cuerpo del trabajo   -->
+	<div class="container">
+    <div class="section">
+		<h1>Registro de Usuarios</h1>
+		<table class="responsive-table striped">
+			<tr>
+				<th>ID Usuario</th>
+				<th>Nombre Usuario</th>
+				<th>Estado</th>
+				<th>Rol</th>
+				<th>Accion</th>
+			
+			</tr>
+			
+			<tr th:each= "usuarios : ${usuarios}">
+				<td th:text="${usuarios.idUsuario}"></td>
+				<td th:text="${usuarios.nomUsuario}"></td>
+				<td th:switch="${usuarios.activo}">
+					<span th:case="'1'">Activo</span>
+					<span th:case="*">Inactivo</span>
+				</td>
+				<td>
+					<span th:each="roles,iterStat : ${usuarios.roles}">
+						<span th:text="${roles.nomRol}"/><th:block th:if="${!iterStat.last}">,</th:block>
+					</span> 
+				</td>
+				<td>
+					<a th:href="@{/admin/usuario/edit/{id}(id=${usuarios.idUsuario})}" class="waves-effect waves-red btn"><i class="material-icons left">mode_edit</i>Editar</a> 
+    				<a th:href="@{/admin/usuario/delete/{id}(id=${usuarios.idUsuario})}" class="waves-effect waves-teal btn"><i class="material-icons left">delete</i>Eliminar</a>
+				</td>
+			
+			</tr>
+				
+		
+		
+		</table>
+	
+				<a href="#" th:href="@{/admin/usuario/user}" class="waves-effect waves-green btn">Agregar nuevo</a>
+		
+
+	  </div>
+    <br/><br/>
+  </div>
+	
+	
+	
+	<div th:replace="fragments/footer ::footer">&nbsp;</div>
+
+ <!--llamada de script --> 
+
+
+
+</body>
+</html>

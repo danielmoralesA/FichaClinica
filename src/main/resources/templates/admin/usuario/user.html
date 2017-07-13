@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf/extras/springsecurity">
+<head>
+<meta charset="UTF-8"/>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Ficha Admision Principal</title>
+  
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link href="../static/css/materialize.css" th:href="@{/css/materialize.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../static/css/style.css" th:href="@{/css/style.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+	
+	
+ <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+   <script src="../static/js/materialize.js" th:src="@{/js/materialize.js}"></script>
+   <script src="../static/js/init.js" th:src="@{/js/init.js}"></script>
+ 
+<script type="text/javascript">
+$(".button-collapse").sideNav();
+</script> 
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+  $('select').material_select();
+});
+
+</script>
+
+</head>
+<body>
+	<div th:replace="fragments/header ::nav">&nbsp;</div>
+ <!--   cuerpo del trabajo   -->
+	<div class="container">
+    <div class="section">
+    <h1>Registrar nuevo usuario </h1>
+         <span th:utext="${successMessage}"></span>
+    
+    <!-- cuerpo para el formulario -->
+    <form class="col s12" th:action="@{/admin/usuario/add}" th:object="${usuarios}" method="post" role="form">
+    	<div class="row">
+    	<label th:if="${#fields.hasErrors('nomUsuario')}" th:errors="*{nomUsuario}" 
+    class="Validation-message"></label>
+    		<div class="input-field col s12">
+    		 
+    			<i class="material-icons prefix">account_circle</i>
+    			<input id="icon-prefix" type="text" th:field="*{nomUsuario}" name="nomusuario" class="validate" required="required"/>
+    			<label for="icon-prefix">Nombre Usuario</label>
+    			
+    		
+    		</div>
+    	</div>
+    	<div class="row">
+    		 <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+								class="validation-message"></label>
+    		<div class="input-field col s12">
+    			<i class="material-icons prefix">account_circle</i>
+    			<input id="password" type="password" th:field="*{password}" name="password" class="validate" required="required"/>
+    			<label for="password">Password</label>
+    			
+    		
+    		</div>
+    	</div>
+    	<div class="row">
+    		<div class="input-field col s12">
+    			<select name="idRol" class="form-control">
+    					<option value="" th:disabled="disabled" th:selected="selected">Perfil del usuario</option>
+       					<option th:each="roles : ${rol}" th:value="${roles.idRol}" th:text="${roles.nomRol}"></option>
+    			
+    			
+    			</select>
+    		
+    		
+    		</div>
+    		
+    	</div>
+    	
+    
+    	<div class="row">
+    	      <button type='submit'  class='btn waves-effect blue' name="action" id="btnEmpty">Agregar
+    	      <i class="material-icons right">send</i>
+    	      </button>
+    	    	
+    	</div>
+    
+    
+    </form>
+    
+    
+    
+    
+    
+    <!-- fin del cuerpo del trabajo -->
+    </div>
+    <br/><br/>
+  </div>
+	
+	
+	
+	<div th:replace="fragments/footer ::footer">&nbsp;</div>
+
+ <!--llamada de script --> 
+
+
+
+</body>
+</html>

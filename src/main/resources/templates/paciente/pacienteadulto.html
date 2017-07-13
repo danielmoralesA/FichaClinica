@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf/extras/springsecurity">
+<head>
+<meta charset="UTF-8"/>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Ficha Admision Principal</title>
+  
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link href="../static/css/materialize.css" th:href="@{/css/materialize.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../static/css/style.css" th:href="@{/css/style.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+	
+	
+ <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+   <script src="../static/js/materialize.js" th:src="@{/js/materialize.js}"></script>
+   <script src="../static/js/init.js" th:src="@{/js/init.js}"></script>
+ 
+<script type="text/javascript">
+$(".button-collapse").sideNav();
+</script> 
+
+</head>
+<body>
+	<div th:replace="fragments/header ::nav">&nbsp;</div>
+ <!--   cuerpo del trabajo   -->
+	<div class="container">
+    <div class="section">
+    <!-- titulo del reporte -->
+    <h1>Registro de Paciente Adulto </h1>
+    <form class="col s12" th:action="@{/paciente/pacienteadulto}" method="post" role="form">
+    <div class="row">
+    	<div class="input-field col s6">
+    		<i class="material-icons prefix">person_pin</i>
+    		<input id="icon_prefix" name="dui" type="text" class="validate" required="required" />
+     		<label for="icon_prefix" th:field="*{dui}" th:value="dui">DUI</label>
+    	</div>
+         
+    </div>
+    <div class="row">
+    	<div class="input-field col s6">
+    		<i class="material-icons prefix">account_circle</i>
+          <input id="icon_prefix"  name="nombre1" type="text" class="validate" required="required" />
+          <label for="icon_prefix"  >Primer nombre</label>	
+    	  	
+    	</div>
+    	 <div class="input-field col s6">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="icon_prefix"  name="nombre2" type="text" class="validate"  />
+          <label for="icon_prefix" >Segundo nombre</label>
+        </div>
+    	
+    	
+    </div>
+    <div class="row">
+    	<div class="input-field col s6">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="icon_prefix"  name="apellido1" type="text" class="validate" required="required" />
+          <label for="icon_prefix" >Primer apellido</label>
+        </div>
+        <div class="input-field col s6">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="icon_prefix"  name="apellido2" type="text" class="validate"  />
+          <label for="icon_prefix"  th:value="apellido2">Segundo apellido</label>
+        </div>
+        
+    </div>
+    
+    <div class="row">
+    	      <button type='submit'  class='btn waves-effect blue' name="action" id="btnEmpty">Registrar
+    	      <i class="material-icons right">send</i>
+    	      </button>
+    	    	
+    	</div>
+    
+    
+    </form>
+    
+    
+    <!-- fin del cuerpo del trabajo -->
+    </div>
+    <br/><br/>
+  </div>
+	
+	
+	
+	<div th:replace="fragments/footer ::footer">&nbsp;</div>
+
+ <!--llamada de script --> 
+
+</body>
+</html>

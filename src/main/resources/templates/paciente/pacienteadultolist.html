@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf/extras/springsecurity">
+<head>
+<meta charset="UTF-8"/>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Ficha Admision Principal</title>
+  
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link href="../static/css/materialize.css" th:href="@{/css/materialize.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="../static/css/style.css" th:href="@{/css/style.css}" type="text/css" rel="stylesheet" media="screen,projection"/>
+	
+	
+ <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+   <script src="../static/js/materialize.js" th:src="@{/js/materialize.js}"></script>
+   <script src="../static/js/init.js" th:src="@{/js/init.js}"></script>
+ 
+<script type="text/javascript">
+$(".button-collapse").sideNav();
+</script> 
+
+</head>
+<body>
+	<div th:replace="fragments/header ::nav">&nbsp;</div>
+ <!--   cuerpo del trabajo   -->
+ 	<div class="container">
+    <div class="section">
+    <!-- titulo del reporte -->
+    <h1>Registro de Pacientes  </h1>
+    <div class="row">
+ 			<table class="responsive-table striped borders">
+  		<thead>
+  			<tr>
+  				<th data-field="idpac" name="idpac">ID</th>
+  				<th data-field="nombre1" name="nombre1">Primer Nombre</th>
+  				<th data-field="nombre2" name="nombre2">Segundo Nombre</th>
+  				<th data-field="apellido1" name="apellido1">Primer Apellido</th>
+  				<th data-field="apellido2" name="apellido1">Segundo Apellido</th>
+  				<th data-field="dui" name="dui">Dui</th>
+  				<th data-field="numExpediente" name="numExpediente">Num Expediente</th>
+  				<th>Accion</th>
+  			</tr>
+  		</thead>
+  		<tbody>
+  			<tr th:each="paciente: ${pacList}">
+  				<td th:text="${paciente.idpac}"></td>
+  				<td th:text="${paciente.nombre1}"></td>
+  				<td th:text="${paciente.nombre2}"></td>
+  				<td th:text="${paciente.apellido1}"></td>
+  				<td th:text="${paciente.apellido2}"></td>
+  				<td th:text="${paciente.dui}"></td>
+  				<td th:text="${paciente.numExpediente}"></td>
+  				<td>
+					<a th:href="@{/paciente/pacienteadultoedit/{id}(id=${paciente.idpac})}" class="waves-effect waves-red btn"><i class="material-icons left">mode_edit</i>Editar</a> 
+    				<a th:href="@{/paciente/pacientedelete/{id}(id=${paciente.idpac})}" class="waves-effect waves-teal btn"><i class="material-icons left">delete</i>Eliminar</a>
+				</td>
+			</tr>
+  		</tbody>
+  	</table>
+ 
+ 
+ 
+ 
+ 
+ 	</div>
+ 
+ 
+ 
+ 		<a href="#" th:href="@{/paciente/pacienteadulto}" class="waves-effect waves-green btn">Agregar nuevo</a>
+ 
+ 
+ 
+ 
+  <!-- fin del cuerpo del trabajo -->
+    </div>
+    <br/><br/>
+  </div>
+	
+	
+	
+	<div th:replace="fragments/footer ::footer">&nbsp;</div>
+
+ <!--llamada de script --> 
+
+</body>
+</html>
