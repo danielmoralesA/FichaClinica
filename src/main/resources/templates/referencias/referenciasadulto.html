@@ -21,8 +21,7 @@
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="../static/js/materialize.js" th:src="@{/js/materialize.js}"></script>
 <script src="../static/js/init.js" th:src="@{/js/init.js}"></script>
-
-<script src="../static/js/angular.min.js" th:src="@{/js/angular.min.js}"></script>
+<script src="../static/js/angular.js" th:src="@{/js/angular.js}"></script>
 <script src="../static/js/script.js" th:src="@{/js/script.js}"></script>
 
 <script type="text/javascript">
@@ -35,12 +34,14 @@
 	});
 </script>
 </head>
-<body ng-app="main" ng-controller="EnfermedadCtrl">
+<body ng-app="app" ng-controller="EnfermedadCtrl">
 	<div th:replace="fragments/header ::nav">&nbsp;</div>
 	<!--   cuerpo del trabajo   -->
 	<div class="container">
 		<div class="section">
+			<div class="section">
 			<h1>Datos Clinicos</h1>
+			</div>
 			<form class="col s12" role="form" th:object="${fichaAdmision}"
 				th:action="@{/referencias/referenciasadulto}" method="post">
 				<div class="section">
@@ -148,14 +149,15 @@
 					<div class="row">
 					
 					
-							<button class="btn waves-effect red" ng-click="AddContactTypeControl()" type="button" id="btAdd" >Agregar
+							<button class="btn waves-effect red" ng-click="AddEnfermedad()" type="button" id="btAdd" >Agregar
 		 					   <i class="material-icons right">send</i>
 		 					 </button>
+		 					 
+		 					 <div class="row" id="elementos">
+		 					 
+		 					 </div>
 					
 					</div>
-					 <div id="contactTypeDiv" class="col-sm-10">
-              
-            </div>
 				
 				</div>
 				   <div class="row">
@@ -173,6 +175,51 @@
 	<div th:replace="fragments/footer ::footer">&nbsp;</div>
 
 	<!--llamada de script -->
+<script type="text/javascript">
+	var app= angular.module("app",[]);
+	
+	(function(app){
+		
+		"use strict";
+			
+			app.controller("EnfermedadCtrl",function ($scope){
+		
+				$scope.AddEnfermedad=function (){
+			
+				var element= angular.element(document.querySelector('#elementos'));
+				element.append('<div class="row"><div class="input-field col s4">'+
+				'<select class="browser-default"   >  <option value="" th:disabled="disabled" th:selected="selected" >Sistema</option>'+
+				'<option th:each="enfermedadsistema : ${enfermedades}" th:value="${enfermedadsistema.idsistema}" th:text="${enfermedadsistema.nombresistema}">'+
+				'</option>'+
+	            '</select></div>'+
+				'<div class="input-field col s4">'+
+				'<select class="browser-default">  <option value="" >Choose your option</option>'+
+				'<option value="1">Option 1</option>'+
+				'</select><label>Materialize Select</label></div>'+
+				'<div class="input-field col s2">'+
+				'<button class="btn waves-effect red" ng-click="borrar($event)" type="button" id="btAdd" >Eliminar</button>'+
+				'</div>'+'</div>'
+				);
+				
+				
+				
+			};
+			
+			  //$scope.Eliminar=function(){
+			
+			  $scope.borrar =function(e) {
+				  var element= angular.element(document.querySelector('#elementos'));
+				 // element.remove();
+				  //$scope.$destroy();	
+				  $scope.splice()
+				  
+			  }
+			  
+			});
+		
+	})(app);
+
+</script>
 
 </body>
 </html>

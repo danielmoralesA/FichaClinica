@@ -37,7 +37,7 @@ $(".button-collapse").sideNav();
 	<div class="container">
     <div class="section">
     <!-- titulo del reporte -->
-    <h1>Registro De Paciente Adulto </h1>
+    <h1>Registro De Paciente Menor </h1>
     <!-- formulario -->
     
       <form class="col s12" role="form" th:object="${paciente}" th:action="@{/paciente/editaadulto/update}"  method="post">
@@ -78,7 +78,7 @@ $(".button-collapse").sideNav();
  			<div class="input-field col s6">
 		     <i class="material-icons prefix">person_pin</i>
 		     <input id="icon_prefix" th:field="*{dui}" name="dui" type="text" class="validate"/>
-		     <label for="icon_prefix"  th:value="dui">DUI</label>
+		     <label for="icon_prefix"  th:value="dui">DUI Responsable </label>
 		    </div>
      	</div>
      	<div class="row">
@@ -105,6 +105,12 @@ $(".button-collapse").sideNav();
 	          <input id="icon_prefix" name="apellido2" th:field="*{apellido2}" type="text" class="validate"/>
 	          <label for="icon_prefix"  >Segundo apellido</label>
 	        </div>
+ 		
+ 		</div>
+ 		<div class="row">
+ 			<i class="material-icons prefix">account_circle</i>
+	          <input id="icon_prefix" name="responsable" th:field="*{responsable}" type="text" class="validate"/>
+	          <label for="icon_prefix"  >Responsable</label>
  		
  		</div>
  		<div class="row">
@@ -421,4 +427,3 @@ function sendAjaxRequest(){
 </body>
 </html>
     
-

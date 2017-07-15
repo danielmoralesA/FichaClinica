@@ -30,7 +30,7 @@ $(".button-collapse").sideNav();
     <div class="section">
     <!-- titulo del reporte -->
 	    <div class="row">
-	    <h1>Registro de Pacientes  </h1>
+	    <h1>Registro de Pacientes Menor  </h1>
 	    </div>
     </div>
     <div class="row">
@@ -42,7 +42,7 @@ $(".button-collapse").sideNav();
   				<th data-field="nombre2" name="nombre2">Segundo Nombre</th>
   				<th data-field="apellido1" name="apellido1">Primer Apellido</th>
   				<th data-field="apellido2" name="apellido1">Segundo Apellido</th>
-  				<th data-field="dui" name="dui">Dui</th>
+  				<th data-field="dui" name="dui">DUI Responsable</th>
   				<th data-field="numExpediente" name="numExpediente">Num Expediente</th>
   				<th>Accion</th>
   			</tr>
@@ -57,8 +57,8 @@ $(".button-collapse").sideNav();
   				<td th:text="${paciente.dui}"></td>
   				<td th:text="${paciente.numExpediente}"></td>
   				<td>
-					<a th:href="@{/paciente/editadulto/{id}(id=${paciente.idpac})}" class="waves-effect waves-red btn"><i class="material-icons left">mode_edit</i>Editar</a> 
-    				<a th:href="@{/paciente/pacientedelete/{id}(id=${paciente.idpac})}" class="waves-effect waves-teal btn"><i class="material-icons left">delete</i>Eliminar</a>
+					<a th:href="@{/paciente/menoredit/{id}(id=${paciente.idpac})}" class="waves-effect waves-red btn"><i class="material-icons left">mode_edit</i>Editar</a> 
+    				<a th:href="@{/paciente/pacientemenor/{id}(id=${paciente.idpac})}" class="waves-effect waves-teal btn"><i class="material-icons left">delete</i>Eliminar</a>
 				</td>
 			</tr>
   		</tbody>

@@ -11,10 +11,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
+import com.sv.foues.entidades.EnfermedadSistema;
 import com.sv.foues.entidades.FichaAdmision;
 import com.sv.foues.entidades.FichaClinica;
-import com.sv.foues.entidades.Paciente;
+
 import com.sv.foues.entidades.Referencias;
+import com.sv.foues.repositorio.EnfermedadSistemaRepo;
 import com.sv.foues.repositorio.FichaAdmisionRepo;
 import com.sv.foues.repositorio.FichaClinicaRepo;
 import com.sv.foues.repositorio.ReferenciasRepo;
@@ -30,6 +33,10 @@ public class ReferenciasController {
 	
 	@Autowired
 	FichaClinicaRepo clinicarepo;
+	
+	
+	@Autowired
+	EnfermedadSistemaRepo enfrepo;
 	
 	//llamada al controlador 
 	@RequestMapping("/referencias/referenciasadulto")
@@ -78,6 +85,15 @@ public class ReferenciasController {
 		model.addAttribute("fichaadmision",ficharepo.getFicha(id));
 		return "referencias/editreferenciasadulto";
 		
+	}
+	
+	
+	//carga lista de las enfermedades por sistema
+	@ModelAttribute("enfermedades")
+	public List<EnfermedadSistema> getenfermedad(){
+		ArrayList<EnfermedadSistema> depa=new ArrayList<EnfermedadSistema>();
+		depa=(ArrayList<EnfermedadSistema>)enfrepo.findAll();
+		return depa;
 	}
 	
 }
