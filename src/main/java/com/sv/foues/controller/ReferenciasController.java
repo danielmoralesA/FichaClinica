@@ -1,7 +1,9 @@
 package com.sv.foues.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,17 +12,20 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sv.foues.entidades.EnfermedadSistema;
 import com.sv.foues.entidades.FichaAdmision;
 import com.sv.foues.entidades.FichaClinica;
 
 import com.sv.foues.entidades.Referencias;
+import com.sv.foues.entidades.Tiposenfermedades;
 import com.sv.foues.repositorio.EnfermedadSistemaRepo;
 import com.sv.foues.repositorio.FichaAdmisionRepo;
 import com.sv.foues.repositorio.FichaClinicaRepo;
 import com.sv.foues.repositorio.ReferenciasRepo;
+import com.sv.foues.repositorio.TiposEnfermedadRepo;
 
 @Controller
 public class ReferenciasController {
@@ -37,6 +42,9 @@ public class ReferenciasController {
 	
 	@Autowired
 	EnfermedadSistemaRepo enfrepo;
+	
+	@Autowired
+	TiposEnfermedadRepo tiporepo;
 	
 	//llamada al controlador 
 	@RequestMapping("/referencias/referenciasadulto")
@@ -94,6 +102,23 @@ public class ReferenciasController {
 		ArrayList<EnfermedadSistema> depa=new ArrayList<EnfermedadSistema>();
 		depa=(ArrayList<EnfermedadSistema>)enfrepo.findAll();
 		return depa;
+	}
+	
+	//para cargar la lista de tipo de engfermedad
+	
+	
+	@RequestMapping("/tipos")
+	@ResponseBody
+	public Map<String, String> gettipos(@RequestParam int idsistema){
+		Map<String, String> Tipovalor=new HashMap<>();
+		EnfermedadSistema enfermedad=new EnfermedadSistema();
+		enfermedad=enfrepo.findOne(idsistema);
+		List<Tiposenfermedades> tipo=tiporepo.datos(enfermedad);
+		for(Tiposenfermedades tipos: tipo){
+			Tipovalor.put(String.valueOf(tipos.getIdtipo()),tipos.getNombreenfermedad());
+		}
+		return Tipovalor;
+		
 	}
 	
 }

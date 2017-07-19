@@ -21,11 +21,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sv.foues.entidades.Departamento;
+import com.sv.foues.entidades.EnfermedadSistema;
 import com.sv.foues.entidades.EstadoCivil;
 import com.sv.foues.entidades.Expediente;
 import com.sv.foues.entidades.Municipio;
 import com.sv.foues.entidades.Paciente;
 import com.sv.foues.entidades.Profecion;
+import com.sv.foues.entidades.Tiposenfermedades;
 import com.sv.foues.repositorio.DepartamentoRepo;
 import com.sv.foues.repositorio.EstadoCivilRepo;
 import com.sv.foues.repositorio.ExpedienteRepo;
@@ -225,6 +227,18 @@ public class PacienteController {
 		return  munrepo.datos(depa);
 	}
 	
-
+	@RequestMapping("/muni")
+	@ResponseBody
+	public Map<String, String> getMun(@RequestParam int departamento){
+		Map<String, String> Tipovalor=new HashMap<>();
+		Departamento depa=new Departamento();
+		depa=deparepo.findOne(departamento);
+		List<Municipio> tipo=munrepo.findMunicipiobydepart(depa);
+		for(Municipio tipos: tipo){
+			Tipovalor.put(String.valueOf(tipos.getIdMunicipio()),tipos.getNomMunicipio());
+		}
+		return Tipovalor;
+		
+	}
 	
 }

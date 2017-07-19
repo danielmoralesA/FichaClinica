@@ -16,6 +16,8 @@
  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
    <script src="../static/js/materialize.js" th:src="@{/js/materialize.js}"></script>
    <script src="../static/js/init.js" th:src="@{/js/init.js}"></script>
+   <script src="../static/js/node_modules/jquery-chained/jquery.chained.js" th:src="@{/js/node_modules/jquery-chained/jquery.chained.js}"></script>
+<script src="../static/js/node_modules/jquery-chained/jquery.chained.remote.js" th:src="@{/js/node_modules/jquery-chained/jquery.chained.remote.js}"></script>
  
 <script type="text/javascript">
 $(".button-collapse").sideNav();
@@ -207,7 +209,7 @@ $(".button-collapse").sideNav();
     		<div class="input-field col s12 m6">
 		     	<i class="material-icons prefix">info</i>
 		     	  
-				  <select  name="departamento" id="departamento" th:field="*{departamento}" onChange="onstatechange(this)" >
+				 <select  name="departamentodom" id="departamentodom" th:field="*{departamento}" onChange="onstatechange(this)" >
 				    <option value="" th:disabled="disabled" th:selected="selected">Departamento de Residencia</option>
 				    <option th:each="departamento : ${departamentos}" th:value="${departamento.idDepartamento}" th:text="${departamento.nombre}"></option>
 				    <!-- <option value="1" >Masculino</option>
@@ -218,7 +220,7 @@ $(".button-collapse").sideNav();
 			 
 			 <div class="input-field col s12 m6 ">
 		     	  
-				  <select class="browser-default" name="munDomicilio" id="municipios" th:field="*{munDomicilio}"  >
+				  <select class="browser-default" name="munDomicilio" id="municipiodom" th:field="*{munDomicilio}"  >
 				  	<option value="">Municipio de residencia</option>
 				  </select>
 				  
@@ -418,6 +420,25 @@ function sendAjaxRequest(){
  /*]]>*/
 
 </script>	
+<script type="text/javascript">
+
+	
+$("#municipiodom").remoteChained(
+		{
+			//	var $scope= angular.element("#elementos").scope();
+				
+			parents: "#departamentodom",
+			url: "/fichaadmision/muni"
+			
+			
+		}		
+		
+	
+	);
+	
+
+
+</script>
 </body>
 </html>
     

@@ -18,7 +18,7 @@ public interface MunicipioRepo  extends CrudRepository<Municipio, Integer>{
 	@Query("SELECT  m.nomMunicipio from Municipio m   WHERE m.departamento= :idpac")
 	public List<Municipio> datos(@Param("idpac") Departamento idpac); 
 	
-	//@Query("SELECT m.idDepartamento, m.nomMunicipio from Municipio m WHERE idDepartamento= :idpac")
-	//public List<Municipio> findMunicipiobydepart(@Param("idpac") int idpac);
+	@Query("SELECT m from Municipio m WHERE m.departamento= :idpac")
+	public List<Municipio> findMunicipiobydepart(@Param("idpac") Departamento idpac);
 	
 }

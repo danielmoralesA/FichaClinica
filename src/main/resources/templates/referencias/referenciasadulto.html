@@ -21,9 +21,9 @@
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="../static/js/materialize.js" th:src="@{/js/materialize.js}"></script>
 <script src="../static/js/init.js" th:src="@{/js/init.js}"></script>
-<script src="../static/js/angular.js" th:src="@{/js/angular.js}"></script>
 <script src="../static/js/script.js" th:src="@{/js/script.js}"></script>
-
+<script src="../static/js/node_modules/jquery-chained/jquery.chained.js" th:src="@{/js/node_modules/jquery-chained/jquery.chained.js}"></script>
+<script src="../static/js/node_modules/jquery-chained/jquery.chained.remote.js" th:src="@{/js/node_modules/jquery-chained/jquery.chained.remote.js}"></script>
 <script type="text/javascript">
 	$(".button-collapse").sideNav();
 </script>
@@ -34,7 +34,7 @@
 	});
 </script>
 </head>
-<body ng-app="app" ng-controller="EnfermedadCtrl">
+<body >
 	<div th:replace="fragments/header ::nav">&nbsp;</div>
 	<!--   cuerpo del trabajo   -->
 	<div class="container">
@@ -149,7 +149,7 @@
 					<div class="row">
 					
 					
-							<button class="btn waves-effect red" ng-click="AddEnfermedad()" type="button" id="btAdd" >Agregar
+							<button class="btn waves-effect red"  type="button" id="agregar" >Agregar
 		 					   <i class="material-icons right">send</i>
 		 					 </button>
 		 					 
@@ -175,50 +175,64 @@
 	<div th:replace="fragments/footer ::footer">&nbsp;</div>
 
 	<!--llamada de script -->
-<script type="text/javascript">
-	var app= angular.module("app",[]);
-	
-	(function(app){
-		
-		"use strict";
-			
-			app.controller("EnfermedadCtrl",function ($scope){
-		
-				$scope.AddEnfermedad=function (){
-			
-				var element= angular.element(document.querySelector('#elementos'));
-				element.append('<div class="row"><div class="input-field col s4">'+
-				'<select class="browser-default"   >  <option value="" th:disabled="disabled" th:selected="selected" >Sistema</option>'+
-				'<option th:each="enfermedadsistema : ${enfermedades}" th:value="${enfermedadsistema.idsistema}" th:text="${enfermedadsistema.nombresistema}">'+
-				'</option>'+
-	            '</select></div>'+
-				'<div class="input-field col s4">'+
-				'<select class="browser-default">  <option value="" >Choose your option</option>'+
-				'<option value="1">Option 1</option>'+
-				'</select><label>Materialize Select</label></div>'+
-				'<div class="input-field col s2">'+
-				'<button class="btn waves-effect red" ng-click="borrar($event)" type="button" id="btAdd" >Eliminar</button>'+
-				'</div>'+'</div>'
-				);
-				
-				
-				
-			};
-			
-			  //$scope.Eliminar=function(){
-			
-			  $scope.borrar =function(e) {
-				  var element= angular.element(document.querySelector('#elementos'));
-				 // element.remove();
-				  //$scope.$destroy();	
-				  $scope.splice()
-				  
-			  }
-			  
-			});
-		
-	})(app);
 
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#agregar').on('click',function(){
+		$('#elementos').append(
+				'<div class="row"><div class="input-field col s4">'+
+		'<select id="idsistema" th:field="*{enfermedades.idsistema}" class="browser-default"   >  <option value="" th:disabled="disabled" th:selected="selected" >Sistema</option>'+
+		'<option th:each="enfermedadsistema : ${enfermedades}" th:value="${enfermedadsistema.idsistema}" th:text="${enfermedadsistema.nombresistema}">'+
+		'</option>'+
+        '</select></div>'+
+		'<div class="input-field col s4">'+
+		'<select id="tipo" th:field="*{enfermedades.idtipo}"  class="browser-default">'+  
+		'<option value=""></option>'+
+		'</select><label>Materialize Select</label></div>'+
+		'<div class="input-field col s2">'+
+		'<button class="btn waves-effect red"  type="button" id="eliminar" >Eliminar</button>'+
+		'</div>'+'</div>');
+		
+		$("#tipo").remoteChained(
+				{
+					//	var $scope= angular.element("#elementos").scope();
+						
+					parents: "#idsistema",
+					url: "/fichaadmision/tipos"
+					
+					
+					
+				}	);
+		
+		
+	});
+	
+	$('#eliminar').on('click',function(){
+		$('#elementos').remove();
+	})
+	
+});
+
+
+
+
+</script>
+<script type="text/javascript">
+/*	
+	$("#tipo").remoteChained(
+		{
+			//	var $scope= angular.element("#elementos").scope();
+				
+			parents: "#enfermedad",
+			url: "/fichaadmision/tipos"
+			
+			
+			
+		}		
+		
+	
+	);*/
+	
 </script>
 
 </body>
