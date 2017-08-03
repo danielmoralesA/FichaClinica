@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Pieza.findByNombrepieza", query = "SELECT p FROM Pieza p WHERE p.nombrepieza = :nombrepieza")})
 public class Pieza implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -45,7 +45,7 @@ public class Pieza implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "piezaIdpieza")
     private Collection<Evaluacionperio> evaluacionperioCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "piezaIdpieza")
-    private Collection<Evainicial> evainicialCollection;
+    private Collection<Superficie> superficieCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "piezaIdpieza")
     private Collection<Partepieza> partepiezaCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "piezaIdpieza")
@@ -84,12 +84,12 @@ public class Pieza implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Evainicial> getEvainicialCollection() {
-        return evainicialCollection;
+    public Collection<Superficie> getSuperficieCollection() {
+        return superficieCollection;
     }
 
-    public void setEvainicialCollection(Collection<Evainicial> evainicialCollection) {
-        this.evainicialCollection = evainicialCollection;
+    public void setSuperficieCollection(Collection<Superficie> superficieCollection) {
+        this.superficieCollection = superficieCollection;
     }
 
     @XmlTransient

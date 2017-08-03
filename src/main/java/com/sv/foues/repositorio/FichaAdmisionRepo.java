@@ -13,4 +13,7 @@ import com.sv.foues.entidades.FichaAdmision;
 public interface FichaAdmisionRepo extends CrudRepository<FichaAdmision, Integer> {
 	@Query("SELECT f FROM FichaAdmision f WHERE f.idFicha= :idpac") 
     public FichaAdmision getFicha(@Param("idpac") int idpac);
+	
+	@Query("SELECT MAX(idFicha) FROM FichaAdmision")
+	public Integer getid();
 }

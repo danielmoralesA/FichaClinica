@@ -36,8 +36,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "FichaAdmision.findByMotivoConsulta", query = "SELECT f FROM FichaAdmision f WHERE f.motivoConsulta = :motivoConsulta")
     , @NamedQuery(name = "FichaAdmision.findByHistoriaPEnfermedad", query = "SELECT f FROM FichaAdmision f WHERE f.historiaPEnfermedad = :historiaPEnfermedad")})
 public class FichaAdmision implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+	
+	private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -47,9 +47,9 @@ public class FichaAdmision implements Serializable {
     private String motivoConsulta;
     @Column(name = "HistoriaPEnfermedad", length = 100)
     private String historiaPEnfermedad;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fichaAdmisionidFichaAdmision")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fichaadmisionidFicha")
     private Collection<EvaluacionSistematica> evaluacionSistematicaCollection;
-    @JoinColumn(name = "Ficha_idFicha", referencedColumnName = "idFicha", nullable = false,updatable= false)
+    @JoinColumn(name = "Ficha_idFicha", referencedColumnName = "idFicha", nullable = false)
     @ManyToOne(optional = false)
     private FichaClinica fichaidFicha;
     @JoinColumn(name = "referencias_idreferencias", referencedColumnName = "idreferencias", nullable = false)
@@ -67,8 +67,7 @@ public class FichaAdmision implements Serializable {
     private Collection<Odontograma> odontogramaCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fichaadmisionidFicha")
     private Collection<Traumadentro> traumadentroCollection;
-    
-    
+
     public FichaAdmision() {
     }
 
@@ -125,26 +124,6 @@ public class FichaAdmision implements Serializable {
         this.referenciasIdreferencias = referenciasIdreferencias;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idFicha != null ? idFicha.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof FichaAdmision)) {
-            return false;
-        }
-        FichaAdmision other = (FichaAdmision) object;
-        if ((this.idFicha == null && other.idFicha != null) || (this.idFicha != null && !this.idFicha.equals(other.idFicha))) {
-            return false;
-        }
-        return true;
-    }
-
     @XmlTransient
     public Collection<Examenlaboratorio> getExamenlaboratorioCollection() {
         return examenlaboratorioCollection;
@@ -199,7 +178,26 @@ public class FichaAdmision implements Serializable {
         this.traumadentroCollection = traumadentroCollection;
     }
 
-    
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idFicha != null ? idFicha.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof FichaAdmision)) {
+            return false;
+        }
+        FichaAdmision other = (FichaAdmision) object;
+        if ((this.idFicha == null && other.idFicha != null) || (this.idFicha != null && !this.idFicha.equals(other.idFicha))) {
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public String toString() {
         return "com.sv.foues.entidades.FichaAdmision[ idFicha=" + idFicha + " ]";

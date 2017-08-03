@@ -16,13 +16,59 @@
  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
    <script src="../static/js/materialize.js" th:src="@{/js/materialize.js}"></script>
    <script src="../static/js/init.js" th:src="@{/js/init.js}"></script>
- 
+ <script src="../static/js/jquery-ui-1.8.13.custom.min.js"
+	th:src="@{/js/jquery-ui-1.8.13.custom.min.js}"></script>
+<style>
+#myCanvas {
+	border: 1px solid #9C9898;
+}
+
+#myCanvas2 {
+	border: 1px solid #9C9898;
+}
+
+#myCanvas3 {
+	border: 1px solid #9C9898;
+}
+
+#myCanvas4 {
+	border: 1px solid #9C9898;
+}
+
+body {
+	/*text-align: center;*/
+}
+</style>
+
+<script type="text/javascript" th:inline="javascript" >
+$(function() {
+	$("#radio").buttonset();
+	$("#radio_seccion").buttonset();
+	$("#radio").change(function() {
+		accion = $("input[name='accion']:checked").val();
+		if (accion == 'borrar') {
+			$("#radio_seccion").show('blind', 500);
+		} else {
+			$("#radio_seccion").hide();
+		}
+	});
+});
+</script>
+
+
 <script type="text/javascript">
-$(".button-collapse").sideNav();
-</script> 
+	$(".button-collapse").sideNav();
+</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('select').material_select();
+		$('ul.tabs').tabs();
+	});
+	
+</script>
 
 </head>
-<body ng-app="app" ng-controller="PadecimientoCtrl">
+<body >
 	<div th:replace="fragments/header ::nav">&nbsp;</div>
  <!--   cuerpo del trabajo   -->
 	<div class="container">
@@ -35,11 +81,10 @@ $(".button-collapse").sideNav();
 	    	</div>
 	    </div>
 
-	<!-- Cuerpo del forumulario -->
-	<form>
-		<div class="section">
+
+		<form>
 		
-			<table class="bordered" >
+		  <table class="bordered" >
 				<thead>
 				<tr>
 				<th>   </th>
@@ -64,83 +109,83 @@ $(".button-collapse").sideNav();
 			    <tbody>
 				<tr>
 					<td>REC</td>
-					<td><input type="number" name= "1rec"/></td>
-					<td><input type="number" name= "1rec"/></td>
-					<td><input type="number" name= "1rec"/></td>
-					<td><input type="number" name= "1rec"/></td>
-					<td><input type="number" name= "1rec"/></td>
-					<td><input type="number" name= "1rec"/></td>
-					<td><input type="number" name= "1rec"/></td>
-					<td><input type="number" name= "1rec"/></td>
-					<td><input type="number" name= "1rec"/></td>
-					<td><input type="number" name= "1rec"/></td>
-					<td><input type="number" name= "1rec"/></td>
-					<td><input type="number" name= "1rec"/></td>
-					<td><input type="number" name= "1rec"/></td>
-					<td><input type="number" name= "1rec"/></td>
-					<td><input type="number" name= "1rec"/></td>
-					<td><input type="number" name= "1rec"/></td>
+					<td><input type="number" name= "rec"/></td>
+					<td><input type="number" name= "rec"/></td>
+					<td><input type="number" name= "rec"/></td>
+					<td><input type="number" name= "rec"/></td>
+					<td><input type="number" name= "rec"/></td>
+					<td><input type="number" name= "rec"/></td>
+					<td><input type="number" name= "rec"/></td>
+					<td><input type="number" name= "rec"/></td>
+					<td><input type="number" name= "rec"/></td>
+					<td><input type="number" name= "rec"/></td>
+					<td><input type="number" name= "rec"/></td>
+					<td><input type="number" name= "rec"/></td>
+					<td><input type="number" name= "rec"/></td>
+					<td><input type="number" name= "rec"/></td>
+					<td><input type="number" name= "rec"/></td>
+					<td><input type="number" name= "rec"/></td>
 				
 				
 				</tr>
 				<tr>
 					<td>SON</td>
-					<td><input type="number" name= "1son"/></td>
-					<td><input type="number" name= "1son"/></td>
-					<td><input type="number" name= "1son"/></td>
-					<td><input type="number" name= "1son"/></td>
-					<td><input type="number" name= "1son"/></td>
-					<td><input type="number" name= "1son"/></td>
-					<td><input type="number" name= "1son"/></td>
-					<td><input type="number" name= "1son"/></td>
-					<td><input type="number" name= "1son"/></td>
-					<td><input type="number" name= "1son"/></td>
-					<td><input type="number" name= "1son"/></td>
-					<td><input type="number" name= "1son"/></td>
-					<td><input type="number" name= "1son"/></td>
-					<td><input type="number" name= "1son"/></td>
-					<td><input type="number" name= "1son"/></td>
-					<td><input type="number" name= "1son"/></td>
+					<td><input type="number" name= "son"/></td>
+					<td><input type="number" name= "son"/></td>
+					<td><input type="number" name= "son"/></td>
+					<td><input type="number" name= "son"/></td>
+					<td><input type="number" name= "son"/></td>
+					<td><input type="number" name= "son"/></td>
+					<td><input type="number" name= "son"/></td>
+					<td><input type="number" name= "son"/></td>
+					<td><input type="number" name= "son"/></td>
+					<td><input type="number" name= "son"/></td>
+					<td><input type="number" name= "son"/></td>
+					<td><input type="number" name= "son"/></td>
+					<td><input type="number" name= "son"/></td>
+					<td><input type="number" name= "son"/></td>
+					<td><input type="number" name= "son"/></td>
+					<td><input type="number" name= "son"/></td>
 				
 				</tr>
 				<tr>
 					<td>NI</td>
-					<td><input type="number" name= "1ni"/></td>
-					<td><input type="number" name= "1ni"/></td>
-					<td><input type="number" name= "1ni"/></td>
-					<td><input type="number" name= "1ni"/></td>
-					<td><input type="number" name= "1ni"/></td>
-					<td><input type="number" name= "1ni"/></td>
-					<td><input type="number" name= "1ni"/></td>
-					<td><input type="number" name= "1ni"/></td>
-					<td><input type="number" name= "1ni"/></td>
-					<td><input type="number" name= "1ni"/></td>
-					<td><input type="number" name= "1ni"/></td>
-					<td><input type="number" name= "1ni"/></td>
-					<td><input type="number" name= "1ni"/></td>
-					<td><input type="number" name= "1ni"/></td>
-					<td><input type="number" name= "1ni"/></td>
-					<td><input type="number" name= "1ni"/></td>
+					<td><input type="number" name= "ni"/></td>
+					<td><input type="number" name= "ni"/></td>
+					<td><input type="number" name= "ni"/></td>
+					<td><input type="number" name= "ni"/></td>
+					<td><input type="number" name= "ni"/></td>
+					<td><input type="number" name= "ni"/></td>
+					<td><input type="number" name= "ni"/></td>
+					<td><input type="number" name= "ni"/></td>
+					<td><input type="number" name= "ni"/></td>
+					<td><input type="number" name= "ni"/></td>
+					<td><input type="number" name= "ni"/></td>
+					<td><input type="number" name= "ni"/></td>
+					<td><input type="number" name= "ni"/></td>
+					<td><input type="number" name= "ni"/></td>
+					<td><input type="number" name= "ni"/></td>
+					<td><input type="number" name= "ni"/></td>
 				
 				</tr>
 				<tr>
 					<td>IS</td>
-					<td><input type="number" name= "1is"/></td>
-					<td><input type="number" name= "1is"/></td>
-					<td><input type="number" name= "1is"/></td>
-					<td><input type="number" name= "1is"/></td>
-					<td><input type="number" name= "1is"/></td>
-					<td><input type="number" name= "1is"/></td>
-					<td><input type="number" name= "1is"/></td>
-					<td><input type="number" name= "1is"/></td>
-					<td><input type="number" name= "1is"/></td>
-					<td><input type="number" name= "1is"/></td>
-					<td><input type="number" name= "1is"/></td>
-					<td><input type="number" name= "1is"/></td>
-					<td><input type="number" name= "1is"/></td>
-					<td><input type="number" name= "1is"/></td>
-					<td><input type="number" name= "1is"/></td>
-					<td><input type="number" name= "1is"/></td>
+					<td><input type="number" name= "isd"/></td>
+					<td><input type="number" name= "isd"/></td>
+					<td><input type="number" name= "isd"/></td>
+					<td><input type="number" name= "isd"/></td>
+					<td><input type="number" name= "isd"/></td>
+					<td><input type="number" name= "isd"/></td>
+					<td><input type="number" name= "isd"/></td>
+					<td><input type="number" name= "isd"/></td>
+					<td><input type="number" name= "isd"/></td>
+					<td><input type="number" name= "isd"/></td>
+					<td><input type="number" name= "isd"/></td>
+					<td><input type="number" name= "isd"/></td>
+					<td><input type="number" name= "isd"/></td>
+					<td><input type="number" name= "isd"/></td>
+					<td><input type="number" name= "isd"/></td>
+					<td><input type="number" name= "isd"/></td>
 				
 				</tr>
 				<tr>
@@ -165,111 +210,92 @@ $(".button-collapse").sideNav();
 				</tr>
 				<tr>
 					<td>TCR</td>
-					<td><input type="number" name= "tcr"/></td>
-					<td><input type="number" name= "tcr"/></td>
-					<td><input type="number" name= "tcr"/></td>
-					<td><input type="number" name= "tcr"/></td>
-					<td><input type="number" name= "tcr"/></td>
-					<td><input type="number" name= "tcr"/></td>
-					<td><input type="number" name= "tcr"/></td>
-					<td><input type="number" name= "tcr"/></td>
-					<td><input type="number" name= "tcr"/></td>
-					<td><input type="number" name= "tcr"/></td>
-					<td><input type="number" name= "tcr"/></td>
-					<td><input type="number" name= "tcr"/></td>
-					<td><input type="number" name= "tcr"/></td>
-					<td><input type="number" name= "tcr"/></td>
-					<td><input type="number" name= "tcr"/></td>
-					<td><input type="number" name= "tcr"/></td>
-				
+					<td><select name="tcr" ><option value="+">+</option><option value="-">-</option></select></td>
+					<td><select name="tcr"><option value="+">+</option><option value="-">-</option></select></td>					
+					<td><select name="tcr"><option value="+">+</option><option value="-">-</option></select></td>					
+					<td><select name="tcr"><option value="+">+</option><option value="-">-</option></select></td>					
+					<td><select name="tcr"><option value="+">+</option><option value="-">-</option></select></td>					
+					<td><select name="tcr"><option value="+">+</option><option value="-">-</option></select></td>					
+					<td><select name="tcr"><option value="+">+</option><option value="-">-</option></select></td>					
+					<td><select name="tcr"><option value="+">+</option><option value="-">-</option></select></td>
+					<td><select name="tcr"><option value="+">+</option><option value="-">-</option></select></td>	
+					<td><select name="tcr"><option value="+">+</option><option value="-">-</option></select></td>
+					<td><select name="tcr"><option value="+">+</option><option value="-">-</option></select></td>					
+					<td><select name="tcr"><option value="+">+</option><option value="-">-</option></select></td>					
+					<td><select name="tcr"><option value="+">+</option><option value="-">-</option></select></td>					
+					<td><select name="tcr"><option value="+">+</option><option value="-">-</option></select></td>					
+					<td><select name="tcr"><option value="+">+</option><option value="-">-</option></select></td>					
+					<td><select name="tcr"><option value="+">+</option><option value="-">-</option></select></td>					
+					
 				</tr>
 				<tr>
 					<td>FIS</td>
-					<td><input type="number" name= "fis"/></td>
-					<td><input type="number" name= "fis"/></td>
-					<td><input type="number" name= "fis"/></td>
-					<td><input type="number" name= "fis"/></td>
-					<td><input type="number" name= "fis"/></td>
-					<td><input type="number" name= "fis"/></td>
-					<td><input type="number" name= "fis"/></td>
-					<td><input type="number" name= "fis"/></td>
-					<td><input type="number" name= "fis"/></td>
-					<td><input type="number" name= "fis"/></td>
-					<td><input type="number" name= "fis"/></td>
-					<td><input type="number" name= "fis"/></td>
-					<td><input type="number" name= "fis"/></td>
-					<td><input type="number" name= "fis"/></td>
-					<td><input type="number" name= "fis"/></td>
-					<td><input type="number" name= "fis"/></td>
-				
-				</tr>
-				<tr>
-					<td>L.CV</td>
-					<td><input type="number" name= "lcv"/></td>
-					<td><input type="number" name= "lcv"/></td>
-					<td><input type="number" name= "lcv"/></td>
-					<td><input type="number" name= "lcv"/></td>
-					<td><input type="number" name= "lcv"/></td>
-					<td><input type="number" name= "lcv"/></td>
-					<td><input type="number" name= "lcv"/></td>
-					<td><input type="number" name= "lcv"/></td>
-					<td><input type="number" name= "lcv"/></td>
-					<td><input type="number" name= "lcv"/></td>
-					<td><input type="number" name= "lcv"/></td>
-					<td><input type="number" name= "lcv"/></td>
-					<td><input type="number" name= "lcv"/></td>
-					<td><input type="number" name= "lcv"/></td>
-					<td><input type="number" name= "lcv"/></td>
-					<td><input type="number" name= "lcv"/></td>
-				
-				</tr>
-				<tr>
-					<td>MOV</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				
-				</tr>
-				<tr>
-					<td> </td>
-					<td><a  href="#diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-				
-				
-				
-				</tr>
-				<tr>
+					
+					<td><select name="fis" ><option value="SI">SI</option><option value="NO">NO</option></select></td>
+					<td><select name="fis"><option value="SI">SI</option><option value="NO">NO</option></select></td>					
+					<td><select name="fis"><option value="SI">SI</option><option value="NO">NO</option></select></td>					
+					<td><select name="fis" ><option value="SI">SI</option><option value="NO">NO</option></select></td>
+					<td><select name="fis"><option value="SI">SI</option><option value="NO">NO</option></select></td>					
+					<td><select name="fis"><option value="SI">SI</option><option value="NO">NO</option></select></td>
+					<td><select name="fis" ><option value="SI">SI</option><option value="NO">NO</option></select></td>
+					<td><select name="fis"><option value="SI">SI</option><option value="NO">NO</option></select></td>					
+					<td><select name="fis"><option value="SI">SI</option><option value="NO">NO</option></select></td>
+					<td><select name="fis" ><option value="SI">SI</option><option value="NO">NO</option></select></td>
+					<td><select name="fis"><option value="SI">SI</option><option value="NO">NO</option></select></td>					
+					<td><select name="fis"><option value="SI">SI</option><option value="NO">NO</option></select></td>
+					<td><select name="fis" ><option value="SI">SI</option><option value="NO">NO</option></select></td>
+					<td><select name="fis"><option value="SI">SI</option><option value="NO">NO</option></select></td>					
+					<td><select name="fis"><option value="SI">SI</option><option value="NO">NO</option></select></td>
+					<td><select name="fis"><option value="SI">SI</option><option value="NO">NO</option></select></td>
 					
 				
 				
 				</tr>
+				<tr>
+					<td>L.CV</td>
+					<td><select name="lcv" ><option value="+">+</option><option value="-">-</option></select></td>
+					<td><select name="lcv" ><option value="+">+</option><option value="-">-</option></select></td>
+					<td><select name="lcv" ><option value="+">+</option><option value="-">-</option></select></td>
+					<td><select name="lcv" ><option value="+">+</option><option value="-">-</option></select></td>
+					<td><select name="lcv" ><option value="+">+</option><option value="-">-</option></select></td>
+					<td><select name="lcv" ><option value="+">+</option><option value="-">-</option></select></td>
+					<td><select name="lcv" ><option value="+">+</option><option value="-">-</option></select></td>
+					<td><select name="lcv" ><option value="+">+</option><option value="-">-</option></select></td>
+					<td><select name="lcv" ><option value="+">+</option><option value="-">-</option></select></td>
+					<td><select name="lcv" ><option value="+">+</option><option value="-">-</option></select></td>
+					<td><select name="lcv" ><option value="+">+</option><option value="-">-</option></select></td>
+					<td><select name="lcv" ><option value="+">+</option><option value="-">-</option></select></td>
+					<td><select name="lcv" ><option value="+">+</option><option value="-">-</option></select></td>
+					<td><select name="lcv" ><option value="+">+</option><option value="-">-</option></select></td>
+					<td><select name="lcv" ><option value="+">+</option><option value="-">-</option></select></td>
+					<td><select name="lcv" ><option value="+">+</option><option value="-">-</option></select></td>
+				
+				
+				</tr>
+				<tr>
+					<td>MOV</td>
+					<td><select name="mov" ><option value="I">I</option><option value="II">II</option><option value="III">III</option><option value="IV">IV</option></select></td>
+					<td><select name="mov" ><option value="I">I</option><option value="II">II</option><option value="III">III</option><option value="IV">IV</option></select></td>
+					<td><select name="mov" ><option value="I">I</option><option value="II">II</option><option value="III">III</option><option value="IV">IV</option></select></td>
+					<td><select name="mov" ><option value="I">I</option><option value="II">II</option><option value="III">III</option><option value="IV">IV</option></select></td>
+					<td><select name="mov" ><option value="I">I</option><option value="II">II</option><option value="III">III</option><option value="IV">IV</option></select></td>
+					<td><select name="mov" ><option value="I">I</option><option value="II">II</option><option value="III">III</option><option value="IV">IV</option></select></td>
+					<td><select name="mov" ><option value="I">I</option><option value="II">II</option><option value="III">III</option><option value="IV">IV</option></select></td>
+					<td><select name="mov" ><option value="I">I</option><option value="II">II</option><option value="III">III</option><option value="IV">IV</option></select></td>
+					<td><select name="mov" ><option value="I">I</option><option value="II">II</option><option value="III">III</option><option value="IV">IV</option></select></td>
+					<td><select name="mov" ><option value="I">I</option><option value="II">II</option><option value="III">III</option><option value="IV">IV</option></select></td>
+					<td><select name="mov" ><option value="I">I</option><option value="II">II</option><option value="III">III</option><option value="IV">IV</option></select></td>
+					<td><select name="mov" ><option value="I">I</option><option value="II">II</option><option value="III">III</option><option value="IV">IV</option></select></td>
+					<td><select name="mov" ><option value="I">I</option><option value="II">II</option><option value="III">III</option><option value="IV">IV</option></select></td>
+					<td><select name="mov" ><option value="I">I</option><option value="II">II</option><option value="III">III</option><option value="IV">IV</option></select></td>
+					<td><select name="mov" ><option value="I">I</option><option value="II">II</option><option value="III">III</option><option value="IV">IV</option></select></td>
+					<td><select name="mov" ><option value="I">I</option><option value="II">II</option><option value="III">III</option><option value="IV">IV</option></select></td>
+					
+					
+				
+				</tr>
+				
+			
 				
 					
 				</tbody>
@@ -280,295 +306,43 @@ $(".button-collapse").sideNav();
 				
 				<!-- parte bajar -->
 			</table>
-			<!-- tabala para cargar el odontograma -->
-		
-			
-			
-			
-			<table>
-				<tfoot>
-				<tr>
-				<td>   </td>
-				<td>4.8</td>
-				<td>4.7</td>
-				<td>4.6</td>
-				<td>4.5</td>
-				<td>4.4</td>
-				<td>4.3</td>
-				<td>4.2</td>
-				<td>4.1</td>
-				<td>3.1</td>
-				<td>3.2</td>
-				<td>3.3</td>
-				<td>3.4</td>
-				<td>3.5</td>
-				<td>3.6</td>
-				<td>3.7</td>
-				<td>3.8</td>
-					
-				</tr>	
-				</tfoot>
-			
-				
-				<tbody>
-					<tr>
-					
-					<td> </td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					
-					
-					</tr>
-				
-					<tr>   
-						<td> </td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					<td><a href="diente"><img src="../static/odontograma/diente.png" th:src="@{/odontograma/diente.png}"/></a></td>
-					
-					
-					
-					
-					
-					</tr>
-				
-					<tr>
-					<td>MOV</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				
-				
-				</tr>
-				<tr>
-					<td>L.CV</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				
-				</tr>
-				<tr>
-					<td>FIS</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				
-				</tr>
-				<tr>
-					<td>TCR</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				
-				</tr>
-				<tr>
-					<td>IC</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				
-				</tr>
-				<tr>
-					<td>IS</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				
-				</tr>
-				<tr>
-					<td>NI</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				
-				</tr>
-				<tr>
-					<td>SON</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				
-				</tr>
-				<tr>
-					<td>REC</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				
-				</tr>
-				
-				</tbody>
-				
-			
-			</table>
-			<!-- para el modal -->
-			<div id="diente" class="modal">
-				<div class="modal-content">
-					
-				
-				
-				</div>
-				<div class="modal-footer">
-					      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Aceptar</a>
-				
-				
-				</div>
-			
-			
-			</div>
-		
-		
-		</div>	
-	
-	
-	
-	</form>
+		<div class="section">
+	<!-- Cuerpo del forumulario -->
+		<div class="row" id="radio">
+					<input type="radio" id="radio1" name="accion" value="fractura"
+						checked="checked" /><label for="radio1">Fractura</label> <input
+						type="radio" id="radio2" name="accion" value="restauracion" /><label
+						for="radio2">Restauracion</label> <input type="radio" id="radio3"
+						name="accion" value="borrar" /><label for="radio3">Borrar</label>
+					<input type="radio" id="radio4" name="accion" value="extraccion" /><label
+						for="radio4">Extraccion</label> <input type="radio" id="radio5"
+						name="accion" value="puente" /><label for="radio5">Puente</label>
 
-	
+
+				</div>
+				
+					<div  id="canvasesdiv" style="position:relative; width:810px; height:300px">
+						<canvas id="myCanvas" width="810" height="300" style="z-index: 1; position:absolute; left:0px; top:0px;"></canvas>
+				        <canvas id="myCanvas2" width="810" height="300" style="z-index: 2; position:absolute; left:0px; top:0px;"></canvas>
+				        <canvas id="myCanvas3" width="810" height="300" style="z-index: 3; position:absolute; left:0px; top:0px;"></canvas>
+				        <canvas id="myCanvas4" width="810" height="300" style="z-index: 4; position:absolute; left:0px; top:0px;"></canvas>					
+									
+					
+					
+					</div>
+					
+				
+				
+				
+				<!-- Diente seccion -->
+				<div  id="radio_seccion" style="display:none">
+					 <input type="radio" id="radio_1" name="seccion" value="seccion" checked="checked" /><label for="radio_1">Seccion</label>
+        			 <input type="radio" id="radio_2" name="seccion" value="diente" /><label for="radio_2">Diente</label>
+							
+				</div>
+			</div>
+
+	</form>
  <!-- fin del cuerpo del trabajo -->
     </div>
     <br/><br/>
@@ -584,6 +358,7 @@ $(".button-collapse").sideNav();
 		})
 	
 	</script>
+	<script src="../static/js/odonto.js" th:src="@{/js/odonto.js}" th:inline="javascript"></script>
  <!--llamada de script --> 
 
 </body>

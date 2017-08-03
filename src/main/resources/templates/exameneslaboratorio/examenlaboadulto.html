@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf/extras/springsecurity">
+<head>
+<meta charset="UTF-8" />
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+<title>Ficha Admision Principal</title>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<link href="../static/css/materialize.css"
+	th:href="@{/css/materialize.css}" type="text/css" rel="stylesheet"
+	media="screen,projection" />
+<link href="../static/css/style.css" th:href="@{/css/style.css}"
+	type="text/css" rel="stylesheet" media="screen,projection" />
+
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="../static/js/materialize.js" th:src="@{/js/materialize.js}"></script>
+<script src="../static/js/init.js" th:src="@{/js/init.js}"></script>
+<script src="../static/js/node_modules/jquery-chained/jquery.chained.js" th:src="@{/js/node_modules/jquery-chained/jquery.chained.js}"></script>
+<script src="../static/js/node_modules/jquery-chained/jquery.chained.remote.js" th:src="@{/js/node_modules/jquery-chained/jquery.chained.remote.js}"></script>
+<script type="text/javascript">
+	$(".button-collapse").sideNav();
+</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('select').material_select();
+		$('ul.tabs').tabs();
+	});
+	
+</script>
+</head>
+<body>
+	<div th:replace="fragments/header ::nav">&nbsp;</div>
+	
+	
+	
+	
+
+</body>
+</html>

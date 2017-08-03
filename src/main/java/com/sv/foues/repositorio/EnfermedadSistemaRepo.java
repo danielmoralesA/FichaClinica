@@ -6,6 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sv.foues.entidades.EnfermedadSistema;
 
 @Transactional
-public interface EnfermedadSistemaRepo extends CrudRepository<EnfermedadSistema, Integer>{
+public interface EnfermedadSistemaRepo extends CrudRepository<EnfermedadSistema , Integer>{
 
 }

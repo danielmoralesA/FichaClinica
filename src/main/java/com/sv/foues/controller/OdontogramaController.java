@@ -12,4 +12,12 @@ public class OdontogramaController {
 	{
 		return "odontograma/odontogramanew";
 	}
+	
+	//odontograma para 
+	@RequestMapping("/odontograma/odontogramamenor")
+	public String odontogramamenor()
+	{
+		return "odontograma/odontogramamenor";
+	}
 }
+

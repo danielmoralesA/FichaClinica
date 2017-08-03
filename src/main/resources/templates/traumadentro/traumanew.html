@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf/extras/springsecurity">
+<head>
+<meta charset="UTF-8" />
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+<title>Ficha Admision Principal</title>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<link href="../static/css/materialize.css"
+	th:href="@{/css/materialize.css}" type="text/css" rel="stylesheet"
+	media="screen,projection" />
+<link href="../static/css/style.css" th:href="@{/css/style.css}"
+	type="text/css" rel="stylesheet" media="screen,projection" />
+
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="../static/js/materialize.js" th:src="@{/js/materialize.js}"></script>
+<script src="../static/js/init.js" th:src="@{/js/init.js}"></script>
+<script src="../static/js/node_modules/jquery-chained/jquery.chained.js" th:src="@{/js/node_modules/jquery-chained/jquery.chained.js}"></script>
+<script src="../static/js/node_modules/jquery-chained/jquery.chained.remote.js" th:src="@{/js/node_modules/jquery-chained/jquery.chained.remote.js}"></script>
+<script type="text/javascript">
+	$(".button-collapse").sideNav();
+</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('select').material_select();
+
+	});
+</script>
+</head>
+<body>
+	<div th:replace="fragments/header ::nav">&nbsp;</div>
+	<!--   cuerpo del trabajo   -->
+	<div class="container">
+		<div class="section">
+		
+		<div class="section">
+			<div class="row">
+				<h1>Trauma dentroalveolar</h1>
+			
+			</div>
+			
+		</div>
+	
+		<form class="col s12" role="form" 
+				th:action="@{/hallazgoradio/radionew}" method="post">
+		<div class="section">	
+					<div class="row">
+						     <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
+            <h5 class="center">Traumas</h5>
+          
+         </div>
+					</div>
+					
+					<div class="row">
+					<div class="input-field col s4">
+					<input name="presente" type="radio" id="test1" />
+      				<label for="test1">Si</label>
+					
+					</div>
+					<div class="input-field col s4">
+					<input name="presente" type="radio" id="test2" />
+      				<label for="test2">No</label>
+					
+					</div>
+					
+					</div>
+					
+					<div class="row">
+						 <div class="input-field col s4">
+			     	<i class="material-icons prefix">today</i>
+			     	
+					<input id="fecha"   name="fecha" type="date" class="datepicker" />
+					<label class="active" for="fechaNacimiento"  >Fecha DX: </label>
+				
+			</div>
+					
+					
+					</div>
+					
+					 	<div class="row">
+				    		<div class="input-field col s6">
+				          		<i class="material-icons prefix">mode_edit</i>
+				         		<textarea id="icon_prefix2" class="materialize-textarea"></textarea>
+				          		<label for="icon_prefix2">Antecedente de trauma</label>
+				       		 </div>
+    	
+    				</div>
+					
+					<div class="row">
+					
+					
+							<button class="btn waves-effect red"  type="button" id="agregar" >Agregar Diente
+		 					   <i class="material-icons right">send</i>
+		 					 </button>
+		 					 
+		 					 <div class="row" id="elementos">
+		 					 
+		 					 </div>
+					
+					</div>
+				
+		</div>
+		
+		
+		   
+    	
+		
+		
+		
+		
+		
+		 <div class="row">
+			    	      <button type='submit'  class='btn waves-effect blue' name="action" id="btnEmpty">Guardar
+			    	      <i class="material-icons right">send</i>
+			    	      </button>
+    	    	
+    				</div>
+		
+		
+		</form>
+		</div>
+		<br />
+		<br />
+	</div>
+	<div th:replace="fragments/footer ::footer">&nbsp;</div>
+
+	<!--llamada de script -->
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#agregar').on('click',function(){
+		$('#elementos').append(
+				'<div class="row" id="celda"><div class="input-field col s3">'+
+		'<select id="pieza" name="pieza" class="browser-default"   >  <option value="" th:disabled="disabled" th:selected="selected" >Diente</option>'+
+		'<option th:each="pieza : ${piezas}" th:value="${pieza.idpieza}" th:text="${pieza.nombrepieza}">'+
+		'</option>'+
+        '</select></div>'+
+		'<div class="input-field col s2">'+
+		'<button class=" waves-effect red btn"   id="eliminar">Eliminar</button>'+
+		'</div>'+'</div>');
+		
+	
+		
+		
+		
+	});
+	
+	$('#celda a').click(function(event){
+		
+		$("#elementos").remove();
+	})
+	
+});
+
+</script>
+<script type="text/javascript">
+$('.datepicker').pickadate({
+    monthsFull: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+	weekdaysShort: ['Dom', 'Lun', 'Mar', 'Mir', 'Jue', 'Vie', 'Sab'],
+	today: 'Hoy',
+    clear: 'Limpiar',
+    close: 'Cancelar',
+	selectMonths: true, // Creates a dropdown to control month
+    selectYears: 99,
+    format: 'mm/dd/yyyy',
+   
+    formatSubmit: 'yyyy-mm-dd'// Creates a dropdown of 15 years to control year
+    
+  });
+
+</script>
+</body>
+</html>

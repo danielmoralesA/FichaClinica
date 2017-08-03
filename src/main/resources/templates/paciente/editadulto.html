@@ -23,18 +23,31 @@
 $(".button-collapse").sideNav();
 </script> 
 <script type="text/javascript">
-  	$(document).ready(function() {
-    $('select').material_select();
-    	
-  });
-  	
-  	
-  	
-   
- </script>
+	$(document).ready(function() {
+		$('select').material_select();
+		$('ul.tabs').tabs();
+	});
+	
+</script>
 </head>
 <body>
 	<div th:replace="fragments/header ::nav">&nbsp;</div>
+	<!-- tabs -->
+	<div class="row">
+	   <div class="col s12">
+	      <ul class="tabs">
+	        <li class="tab col s3"><a class="teal-text"  target="_self"  th:href="@{/referencias/referenciasadulto}">Datos Clinicos</a></li>
+	        <li class="tab col s3"><a class="teal-text" target="_self" th:href="@{/odontograma/odontogramanew}">Odontograma</a></li>
+	        <li class="tab col s3"><a class="teal-text" target="_self" th:href="@{/apreciacionperio/apreciacionperionew}">Apreciacion Periodontal</a></li>
+	        <li class="tab col s3"><a class="teal-text" target="_self" th:href="@{/hallazgoradio/radionew}">Hallazgo Radiografico</a></li>
+	        <li class="tab col s3"><a class="teal-text" target="_self" href="">Necesidad Tratamiento</a></li>
+	        <li class="tab col s3"><a class="teal-text" target="_self" href="" >Consentimiento</a></li>
+	      </ul>
+	    </div>
+	   		
+	
+	
+	</div>
  <!--   cuerpo del trabajo   -->
 	<div class="container">
     <div class="section">
@@ -189,7 +202,7 @@ $(".button-collapse").sideNav();
 			 
 			 <div class="input-field col s12 m6 ">
 		     	  
-				  <select class="browser-default" name="munDomicilio" id="municipios" th:field="*{munDomicilio}"  >
+				  <select class="browser-default" name="municipio" id="municipio" th:field="*{municipio}"  >
 				  	<option value="">Municipio de nacimiento</option>
 				  </select>
 				  
@@ -209,7 +222,7 @@ $(".button-collapse").sideNav();
     		<div class="input-field col s12 m6">
 		     	<i class="material-icons prefix">info</i>
 		     	  
-				 <select  name="departamentodom" id="departamentodom" th:field="*{departamento}" onChange="onstatechange(this)" >
+				 <select  name="departamentodom" id="departamentodom" th:field="*{depaDomicilio}" onChange="onstatechange(this)" >
 				    <option value="" th:disabled="disabled" th:selected="selected">Departamento de Residencia</option>
 				    <option th:each="departamento : ${departamentos}" th:value="${departamento.idDepartamento}" th:text="${departamento.nombre}"></option>
 				    <!-- <option value="1" >Masculino</option>
@@ -319,7 +332,7 @@ $('.datepicker').pickadate({
 </script>
 <script text="text/javascript"  th:inline="javascript">
 /*<![CDATA[*/
-function sendAjaxRequest(){
+/*function sendAjaxRequest(){
 	var departamento=$("#departamento").val();
 	$.get("/fichaadmision/municipios?departamento="+departamento, function(data){
 		$("#municipios").empty();
@@ -335,11 +348,12 @@ function sendAjaxRequest(){
 		
 	});
 	
-};
+};*/
+
 
 	
 	
-	$(document).ready(
+/*	$(document).ready(
 		function(){
 			 $('select').material_select();
 			$("#departamento").change(function(){
@@ -349,7 +363,21 @@ function sendAjaxRequest(){
 			
 		}		
 	
-	);
+	);*/
+
+	$("#municipio").remoteChained(
+			{
+				//	var $scope= angular.element("#elementos").scope();
+					
+				parents: "#departamento",
+				url: "/fichaadmision/muni"
+				
+				
+			}		
+			
+		
+		);
+	
 	
 	
 	
@@ -428,7 +456,7 @@ $("#municipiodom").remoteChained(
 			//	var $scope= angular.element("#elementos").scope();
 				
 			parents: "#departamentodom",
-			url: "/fichaadmision/muni"
+			url: "/fichaadmision/municipios"
 			
 			
 		}		

@@ -43,6 +43,16 @@ public class Radio implements Serializable {
     private Integer pieza;
     @Column(name = "parte")
     private Integer parte;
+    public Integer getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Integer estado) {
+		this.estado = estado;
+	}
+
+	@Column(name="estado")
+    private Integer estado;
     @JoinColumn(name = "hallazgos_radio_idhalla", referencedColumnName = "idhalla", nullable = false)
     @ManyToOne(optional = false)
     private HallazgosRadio hallazgosRadioIdhalla;

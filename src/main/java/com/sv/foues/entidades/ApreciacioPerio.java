@@ -39,10 +39,10 @@ public class ApreciacioPerio implements Serializable {
     @Basic(optional = false)
     @Column(name = "idperio", nullable = false)
     private Integer idperio;
-    @Column(name = "gingivitis")
-    private Integer gingivitis;
-    @Column(name = "periodonto")
-    private Integer periodonto;
+    @Column(name = "gingivitis",length = 3)
+    private String gingivitis;
+    @Column(name = "periodonto", length = 45)
+    private String periodonto;
     @JoinColumn(name = "ficha_admision_idFicha", referencedColumnName = "idFicha", nullable = false)
     @ManyToOne(optional = false)
     private FichaAdmision fichaadmisionidFicha;
@@ -62,19 +62,19 @@ public class ApreciacioPerio implements Serializable {
         this.idperio = idperio;
     }
 
-    public Integer getGingivitis() {
+    public String getGingivitis() {
         return gingivitis;
     }
 
-    public void setGingivitis(Integer gingivitis) {
+    public void setGingivitis(String gingivitis) {
         this.gingivitis = gingivitis;
     }
 
-    public Integer getPeriodonto() {
+    public String getPeriodonto() {
         return periodonto;
     }
 
-    public void setPeriodonto(Integer periodonto) {
+    public void setPeriodonto(String periodonto) {
         this.periodonto = periodonto;
     }
 

@@ -33,9 +33,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "EvaluacionSistematica.findAll", query = "SELECT e FROM EvaluacionSistematica e")
     , @NamedQuery(name = "EvaluacionSistematica.findByIdEva", query = "SELECT e FROM EvaluacionSistematica e WHERE e.idEva = :idEva")
-    , @NamedQuery(name = "EvaluacionSistematica.findByEvaluacionSistematica", query = "SELECT e FROM EvaluacionSistematica e WHERE e.evaluacionSistematica = :evaluacionSistematica")
-    , @NamedQuery(name = "EvaluacionSistematica.findByHospitalizacion", query = "SELECT e FROM EvaluacionSistematica e WHERE e.hospitalizacion = :hospitalizacion")
-    , @NamedQuery(name = "EvaluacionSistematica.findByComplicaciones", query = "SELECT e FROM EvaluacionSistematica e WHERE e.complicaciones = :complicaciones")})
+    , @NamedQuery(name = "EvaluacionSistematica.findByIdenfermedad", query = "SELECT e FROM EvaluacionSistematica e WHERE e.idenfermedad = :idenfermedad")
+    , @NamedQuery(name = "EvaluacionSistematica.findByIdtipo", query = "SELECT e FROM EvaluacionSistematica e WHERE e.idtipo = :idtipo")})
 public class EvaluacionSistematica implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,15 +43,13 @@ public class EvaluacionSistematica implements Serializable {
     @Basic(optional = false)
     @Column(name = "idEva", nullable = false)
     private Integer idEva;
-    @Column(name = "evaluacionSistematica", length = 100)
-    private String evaluacionSistematica;
-    @Column(name = "hospitalizacion", length = 100)
-    private String hospitalizacion;
-    @Column(name = "complicaciones", length = 100)
-    private String complicaciones;
-    @JoinColumn(name = "FichaAdmision_idFichaAdmision", referencedColumnName = "idFicha", nullable = false)
+    @Column(name = "idenfermedad")
+    private Integer idenfermedad;
+    @Column(name = "idtipo", length = 100)
+    private String idtipo;
+    @JoinColumn(name = "ficha_admision_idFicha", referencedColumnName = "idFicha", nullable = false)
     @ManyToOne(optional = false)
-    private FichaAdmision fichaAdmisionidFichaAdmision;
+    private FichaAdmision fichaadmisionidFicha;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "evaluacionSistematicaidEva")
     private Collection<Enfermedades> enfermedadesCollection;
 
@@ -71,36 +68,28 @@ public class EvaluacionSistematica implements Serializable {
         this.idEva = idEva;
     }
 
-    public String getEvaluacionSistematica() {
-        return evaluacionSistematica;
+    public Integer getIdenfermedad() {
+        return idenfermedad;
     }
 
-    public void setEvaluacionSistematica(String evaluacionSistematica) {
-        this.evaluacionSistematica = evaluacionSistematica;
+    public void setIdenfermedad(Integer idenfermedad) {
+        this.idenfermedad = idenfermedad;
     }
 
-    public String getHospitalizacion() {
-        return hospitalizacion;
+    public String getIdtipo() {
+        return idtipo;
     }
 
-    public void setHospitalizacion(String hospitalizacion) {
-        this.hospitalizacion = hospitalizacion;
+    public void setIdtipo(String idtipo) {
+        this.idtipo = idtipo;
     }
 
-    public String getComplicaciones() {
-        return complicaciones;
+    public FichaAdmision getFichaadmisionidFicha() {
+        return fichaadmisionidFicha;
     }
 
-    public void setComplicaciones(String complicaciones) {
-        this.complicaciones = complicaciones;
-    }
-
-    public FichaAdmision getFichaAdmisionidFichaAdmision() {
-        return fichaAdmisionidFichaAdmision;
-    }
-
-    public void setFichaAdmisionidFichaAdmision(FichaAdmision fichaAdmisionidFichaAdmision) {
-        this.fichaAdmisionidFichaAdmision = fichaAdmisionidFichaAdmision;
+    public void setFichaadmisionidFicha(FichaAdmision fichaadmisionidFicha) {
+        this.fichaadmisionidFicha = fichaadmisionidFicha;
     }
 
     @XmlTransient

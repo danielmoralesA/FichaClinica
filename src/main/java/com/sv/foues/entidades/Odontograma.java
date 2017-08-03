@@ -34,9 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Odontograma.findAll", query = "SELECT o FROM Odontograma o")
     , @NamedQuery(name = "Odontograma.findById", query = "SELECT o FROM Odontograma o WHERE o.id = :id")
     , @NamedQuery(name = "Odontograma.findByNombre", query = "SELECT o FROM Odontograma o WHERE o.nombre = :nombre")
-    , @NamedQuery(name = "Odontograma.findByImagen", query = "SELECT o FROM Odontograma o WHERE o.imagen = :imagen")
-    , @NamedQuery(name = "Odontograma.findByObservaciones", query = "SELECT o FROM Odontograma o WHERE o.observaciones = :observaciones")
-    , @NamedQuery(name = "Odontograma.findByOdontogramacol", query = "SELECT o FROM Odontograma o WHERE o.odontogramacol = :odontogramacol")})
+    , @NamedQuery(name = "Odontograma.findByObservaciones", query = "SELECT o FROM Odontograma o WHERE o.observaciones = :observaciones")})
 public class Odontograma implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,12 +45,10 @@ public class Odontograma implements Serializable {
     private Integer id;
     @Column(name = "nombre", length = 250)
     private String nombre;
-    @Column(name = "imagen", length = 255)
-    private String imagen;
     @Column(name = "observaciones", length = 100)
     private String observaciones;
-    @Column(name = "odontogramacol", length = 45)
-    private String odontogramacol;
+    @OneToMany(mappedBy = "odontogramaId")
+    private Collection<Caracteristica> caracteristicaCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "odontogramaId")
     private Collection<Evaluacionperio> evaluacionperioCollection;
     @JoinColumn(name = "ficha_admision_idFicha", referencedColumnName = "idFicha", nullable = false)
@@ -82,14 +78,6 @@ public class Odontograma implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
-
     public String getObservaciones() {
         return observaciones;
     }
@@ -98,12 +86,13 @@ public class Odontograma implements Serializable {
         this.observaciones = observaciones;
     }
 
-    public String getOdontogramacol() {
-        return odontogramacol;
+    @XmlTransient
+    public Collection<Caracteristica> getCaracteristicaCollection() {
+        return caracteristicaCollection;
     }
 
-    public void setOdontogramacol(String odontogramacol) {
-        this.odontogramacol = odontogramacol;
+    public void setCaracteristicaCollection(Collection<Caracteristica> caracteristicaCollection) {
+        this.caracteristicaCollection = caracteristicaCollection;
     }
 
     @XmlTransient

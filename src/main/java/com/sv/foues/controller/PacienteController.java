@@ -210,21 +210,16 @@ public class PacienteController {
 	//lista para los municipio
 	@RequestMapping("/municipios")
 	@ResponseBody
-	public List getMunicipio(@RequestParam String departamento){
-		int x=Integer.parseInt(departamento);
+	public Map<String, String> getMuni(@RequestParam int depaDomicilio){
+		Map<String, String> Tipovalor=new HashMap<>();
 		Departamento depa=new Departamento();
-		depa=deparepo.findOne(x);
-		HashMap<String, String> map=new HashMap<String,String>();
-	//	Map<String, Set<String>> municipios= (Map<String, Set<String>>) munrepo.datos(x);
-	//	return municipios.get(departamento);
+		depa=deparepo.findOne(depaDomicilio);
+		List<Municipio> tipo=munrepo.findMunicipiobydepart(depa);
+		for(Municipio tipos: tipo){
+			Tipovalor.put(String.valueOf(tipos.getIdMunicipio()),tipos.getNomMunicipio());
+		}
+		return Tipovalor;
 		
-		List<Municipio> muni=munrepo.datos(depa);
-	
-			
-			//System.out.println("\n lista "+muni.get(i));
-		
-		
-		return  munrepo.datos(depa);
 	}
 	
 	@RequestMapping("/muni")

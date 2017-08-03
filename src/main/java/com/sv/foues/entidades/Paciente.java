@@ -115,10 +115,10 @@ public class Paciente implements Serializable {
     private Integer asistio;
     @Column(name = "tratamientos", length = 45)
     private String tratamientos;
-    @Column(name = "depa_domicilio", length = 45)
-    private String depaDomicilio;
+    @Column(name = "depa_domicilio")
+    private Integer depaDomicilio;
     @Column(name = "mun_domicilio", length = 45)
-    private String munDomicilio;
+    private Integer munDomicilio;
     //espacio para agregar los nombres y apellidos
     @Column(name = "nombre1", length = 50)
     private String nombre1;
@@ -341,19 +341,19 @@ public class Paciente implements Serializable {
         this.tratamientos = tratamientos;
     }
 
-    public String getDepaDomicilio() {
+    public Integer getDepaDomicilio() {
         return depaDomicilio;
     }
 
-    public void setDepaDomicilio(String depaDomicilio) {
+    public void setDepaDomicilio(Integer depaDomicilio) {
         this.depaDomicilio = depaDomicilio;
     }
 
-    public String getMunDomicilio() {
+    public Integer getMunDomicilio() {
         return munDomicilio;
     }
 
-    public void setMunDomicilio(String munDomicilio) {
+    public void setMunDomicilio(Integer munDomicilio) {
         this.munDomicilio = munDomicilio;
     }
 

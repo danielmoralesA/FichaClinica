@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf/extras/springsecurity">
+<head>
+<meta charset="UTF-8" />
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+<title>Ficha Admision Principal</title>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<link href="../static/css/materialize.css"
+	th:href="@{/css/materialize.css}" type="text/css" rel="stylesheet"
+	media="screen,projection" />
+<link href="../static/css/style.css" th:href="@{/css/style.css}"
+	type="text/css" rel="stylesheet" media="screen,projection" />
+
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="../static/js/materialize.js" th:src="@{/js/materialize.js}"></script>
+<script src="../static/js/init.js" th:src="@{/js/init.js}"></script>
+<script src="../static/js/node_modules/jquery-chained/jquery.chained.js" th:src="@{/js/node_modules/jquery-chained/jquery.chained.js}"></script>
+<script src="../static/js/node_modules/jquery-chained/jquery.chained.remote.js" th:src="@{/js/node_modules/jquery-chained/jquery.chained.remote.js}"></script>
+<script type="text/javascript">
+	$(".button-collapse").sideNav();
+</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('select').material_select();
+		$('ul.tabs').tabs();
+	});
+	
+</script>
+</head>
+<body>
+	<div th:replace="fragments/header ::nav">&nbsp;</div>
+	
+		<div class="container">
+		<div class="section">
+			<div class="section">
+			<h1>Datos Clinicos</h1>
+			</div> 	
+			
+			
+			<form class="col s12" role="form" th:object="${fichaAdmision}"
+				th:action="@{/referencias/referenciasadulto}" method="post">
+				<div class="section">
+					<div class="row">
+						<div class="input-field col s4">
+							<i class="material-icons prefix">toc</i> <select
+								name="referenciasIdreferencias"
+							    id="referencias"
+								onChange="onstatechange(this)">
+								<option value="" th:disabled="disabled" th:selected="selected">Referencias
+									</option>
+								<option th:each="referencias : ${referencia}"
+									th:value="${referencias.idreferencias}"
+									th:text="${referencias.nombres}"></option>
+
+							</select> <label for="referencias">Referencias</label>
+
+						</div>
+
+					</div>
+
+
+
+				</div>
+				<div class="section">
+					<div class="row">
+						<div class="icon-block">
+							<h5 class="left">Motivo de Consulta</h5>
+						</div>
+
+					</div>
+					<div class="row">
+						<div class="input-field col s6">
+							<input name="motivoConsulta" type="radio" id="idmot" value="Dolor" /> <label
+								for="idmot">a. Dolor</label>
+
+						</div>
+						<div class="input-field col s6">
+							<input name="motivoConsulta" type="radio" id="idmot1" value="Problema función" /> <label
+								for="idmot1">b. Problema función</label>
+
+						</div>
+
+					</div>
+					<div class="row">
+						<div class="input-field col s6">
+							<input name="motivoConsulta" type="radio" id="idmot2" value="Estética" /> <label
+								for="idmot2">c. Estética</label>
+
+						</div>
+						<div class="input-field col s6">
+							<input name="motivoConsulta" type="radio" id="idmot3" value="Chequeo General" /> <label
+								for="idmot3">d. Chequeo General</label>
+
+						</div>
+
+					</div>
+					<div class="row">
+						<div class="input-field col s6">
+							<input name="motivoConsulta" type="radio" id="idmot4" value="Problema de encías" /> <label
+								for="idmot4">e. Problema de encías</label>
+
+						</div>
+						<div class="input-field col s6">
+							<input name="motivoConsulta" type="radio" id="idmot5" value="Endodoncia"/> <label
+								for="idmot5">f. Endodoncia</label>
+
+						</div>
+
+					</div>
+					<div class="row">
+						<div class="input-field col s6">
+							<input name="motivoConsulta" type="radio" id="idmot6" value="Caries" /> <label
+								for="idmot6">e. Caries</label>
+
+						</div>
+						<div class="input-field col s6">
+							<input name="motivoConsulta" type="radio" id="idmot7" value="Extracción dental" /> <label
+								for="idmot7">h. Extracción dental</label>
+
+						</div>
+
+					</div>
+				</div>
+				
+				<div class="section">
+					<div class="row">
+						<div class="input-field col s12">
+						      <i class="material-icons prefix">mode_edit</i>
+			                  <textarea id="Henfe" name="historiaPEnfermedad" class="materialize-textarea"></textarea>
+			                  <label for="Henfe">Historia de la presente enfermedad</label>
+             			 </div>
+					</div>
+				</div>
+			
+			
+			<div class="section">
+				<div class="row">
+					<div class="icon-block">
+					 <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
+           			<h5 class="center">Enfermedades</h5>
+           			</div>
+           		</div>
+			<!--parte para agregar elementos dinamicos -->
+			<table class="responsive-table" id="agregar">
+				<tbody>
+				<tr id="fila">
+				<td></td>
+				<td>
+				<select id="idsistema" name="idenfermedad"  class="browser-default"   >  <option value="" th:disabled="disabled" th:selected="selected" >Sistema</option>
+				<option th:each="enfermedadsistema : ${enfermedades}" th:value="${enfermedadsistema.idsistema}" th:text="${enfermedadsistema.nombresistema}">'+
+				</option>
+        		</select>
+				</td>
+				<td>
+				<select id="tipo"  name="idtipo"  class="browser-default"> 
+				<option value=""></option>
+				</select>
+				
+				</td>
+				<td>
+				<a href="#" onClick="addRow(agregar)" class="btn-floating btn-large waves-effect waves-ligth red"  
+					 	    ><i class="material-icons">add</i></a>
+			    <button  class="btn-floating btn-large waves-effect waves-ligth red borrar">
+			    <i class="material-icons">delete</i></button>
+				</td>
+				</tr>
+			</tbody>
+			
+			</table>
+			
+			</div>
+			
+	    	</form>
+	    </div>
+		<br />
+		<br />
+	</div>
+	    
+	<div th:replace="fragments/footer ::footer">&nbsp;</div>
+	
+	<script>
+	var row=$("#agregar").html();
+	$("#tipo").remoteChained({
+		parents: "#idsistema",
+		//	"#idsistema",$(this).parent(),
+			//	url: "/fichaadmision/tipos"
+			url: "/fichaadmision/tipos"	
+	});
+	$('select').material_select();
+	
+	function addRow(agregar){
+		$(row).appendTo("#agregar");
+		var rowCont=$("#agregar tbody>tr").length;
+		
+		$("#agregar tbody>tr:last select:first").attr('id','idsistema'+rowCont);
+		$("#agregar tbody>tr:last select:last").attr('id','tipo'+rowCont);
+		
+		$("#tipo"+rowCont).remoteChained({
+			parents: "#idsistema"+ rowCont,
+			//	"#idsistema",$(this).parent(),
+				//	url: "/fichaadmision/tipos"
+				url: "/fichaadmision/tipos"
+		} ); 
+		
+		$('select').material_select();
+	}
+	
+
+	
+	$(document).on('click', '.borrar', function (event) {
+	    event.preventDefault();
+	    $(this).closest('tr').remove();
+	});
+	
+	</script>
+	
+
+</body>
+</html>

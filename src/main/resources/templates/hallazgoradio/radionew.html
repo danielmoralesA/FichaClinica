@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf/extras/springsecurity">
+<head>
+<meta charset="UTF-8" />
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+<title>Ficha Admision Principal</title>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<link href="../static/css/materialize.css"
+	th:href="@{/css/materialize.css}" type="text/css" rel="stylesheet"
+	media="screen,projection" />
+<link href="../static/css/style.css" th:href="@{/css/style.css}"
+	type="text/css" rel="stylesheet" media="screen,projection" />
+
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="../static/js/materialize.js" th:src="@{/js/materialize.js}"></script>
+<script src="../static/js/init.js" th:src="@{/js/init.js}"></script>
+<script src="../static/js/node_modules/jquery-chained/jquery.chained.js" th:src="@{/js/node_modules/jquery-chained/jquery.chained.js}"></script>
+<script src="../static/js/node_modules/jquery-chained/jquery.chained.remote.js" th:src="@{/js/node_modules/jquery-chained/jquery.chained.remote.js}"></script>
+<script type="text/javascript">
+	$(".button-collapse").sideNav();
+</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('select').material_select();
+
+	});
+</script>
+</head>
+<body>
+	<div th:replace="fragments/header ::nav">&nbsp;</div>
+	<!--   cuerpo del trabajo   -->
+	<div class="container">
+		<div class="section">
+		
+		<div class="section">
+			<div class="row">
+				<h1>Hallazgo Radiografico</h1>
+			
+			</div>
+			
+		</div>
+	
+		<form class="col s12" role="form" 
+				th:action="@{/hallazgoradio/radionew}" method="post">
+		<div class="section">	
+					<div class="row">
+						     <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
+            <h5 class="center">Estado Pieza Dental</h5>
+          
+         </div>
+					</div>
+					
+					<div class="row">
+					<table class="responsive-table" id="agregar">
+					<tbody>
+					<tr id="fila">
+											
+					
+					
+					</tbody>
+					
+					
+					
+					
+					</table>
+					
+							<button class="btn waves-effect red"  type="button" id="agregar" >Agregar
+		 					   <i class="material-icons right">send</i>
+		 					 </button>
+		 					 
+		 					 <div class="row" id="elementos">
+		 					 
+		 					 </div>
+					
+					</div>
+				
+		</div>
+		
+		<div class="row">
+		    <div class="icon-block">
+            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
+            <h5 class="center">Dificultad Quirugica</h5>
+          
+         </div>
+		</div>
+		<div class="row">
+			<div class="input-field col s4">
+				<input type="checkbox" name="variacion" id="vari" />
+      			<label for="vari">1-8</label>
+				
+			</div>
+		
+		
+		</div>
+		<div class="row">
+			<div class="input-field col s4">
+				<input type="checkbox" name="variacion" id="vari1" />
+      			<label for="vari1">2-8</label>
+				
+			</div>
+		
+		
+		</div>
+		<div class="row">
+			<div class="input-field col s4">
+				<input type="checkbox" name="variacion" id="vari2" />
+      			<label for="vari2">3-8</label>
+				
+			</div>
+		
+		
+		</div>
+		<div class="row">
+			<div class="input-field col s4">
+				<input type="checkbox" name="variacion" id="vari3" />
+      			<label for="vari3">4-8</label>
+				
+			</div>
+		
+		
+		</div>
+		
+		
+		 <div class="row">
+			    	      <button type='submit'  class='btn waves-effect blue' name="action" id="btnEmpty">Guardar
+			    	      <i class="material-icons right">send</i>
+			    	      </button>
+    	    	
+    				</div>
+		
+		
+		</form>
+		</div>
+		<br />
+		<br />
+	</div>
+	<div th:replace="fragments/footer ::footer">&nbsp;</div>
+
+	<!--llamada de script -->
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#agregar').on('click',function(){
+		$('#elementos').append(
+				'<div class="row" id="celda"><div class="input-field col s3">'+
+		'<select id="pieza" name="pieza" class="browser-default"   >  <option value="" th:disabled="disabled" th:selected="selected" >Sistema</option>'+
+		'<option th:each="pieza : ${piezas}" th:value="${pieza.idpieza}" th:text="${pieza.nombrepieza}">'+
+		'</option>'+
+        '</select></div>'+
+		'<div class="input-field col s3">'+
+		'<select id="parte" name="parte"  class="browser-default">'+  
+		'<option value=""></option>'+
+		'</select></div>'+
+		'<div class="input-field col s3">'+
+		'<select id="estado" name="estado"   class="browser-default">'+  
+		'<option th:each="estado : ${estados}"  th:value="${estado.idestado}" th:text="${estado.nombre}"></option>'+
+		'</select></div>'+
+		'<div class="input-field col s2">'+
+		'<button class=" waves-effect red btn"   id="eliminar">Eliminar</button>'+
+		'</div>'+'</div>');
+		
+		$("#parte").remoteChained(
+				{
+					//	var $scope= angular.element("#elementos").scope();
+						
+					parents: "#pieza",
+					url: "/fichaadmision/parte"
+					
+					
+					
+				}	);
+		
+		
+		
+	});
+	
+	$('#celda a').click(function(event){
+		
+		$(this).parent().remove();
+	})
+	
+});
+
+</script>
+</body>
+</html>

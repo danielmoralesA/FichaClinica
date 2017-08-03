@@ -21,6 +21,8 @@
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="../static/js/materialize.js" th:src="@{/js/materialize.js}"></script>
 <script src="../static/js/init.js" th:src="@{/js/init.js}"></script>
+<script src="../static/js/node_modules/jquery-chained/jquery.chained.js" th:src="@{/js/node_modules/jquery-chained/jquery.chained.js}"></script>
+<script src="../static/js/node_modules/jquery-chained/jquery.chained.remote.js" th:src="@{/js/node_modules/jquery-chained/jquery.chained.remote.js}"></script>
 
 <script type="text/javascript">
 	$(".button-collapse").sideNav();
@@ -28,12 +30,29 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('select').material_select();
-
+		$('ul.tabs').tabs();
 	});
+	
 </script>
 </head>
 <body>
 	<div th:replace="fragments/header ::nav">&nbsp;</div>
+	<!-- tabs -->
+	<div class="row">
+	   <div class="col s12">
+	      <ul class="tabs">
+	        <li class="tab col s3"><a class="teal-text"  target="_self"  th:href="@{/referencias/referenciasadulto}">Datos Clinicos</a></li>
+	        <li class="tab col s3"><a class="teal-text" target="_self" th:href="@{/odontograma/odontogramanew}">Odontograma</a></li>
+	        <li class="tab col s3"><a class="teal-text" target="_self" th:href="@{/apreciacionperio/apreciacionperionew}">Apreciacion Periodontal</a></li>
+	        <li class="tab col s3"><a class="teal-text" target="_self" th:href="@{/hallazgoradio/radionew}">Hallazgo Radiografico</a></li>
+	        <li class="tab col s3"><a class="teal-text" target="_self" href="">Necesidad Tratamiento</a></li>
+	        <li class="tab col s3"><a class="teal-text" target="_self" href="" >Consentimiento</a></li>
+	      </ul>
+	    </div>
+	   		
+	
+	
+	</div>
 	<!--   cuerpo del trabajo   -->
 	<div class="container">
 		<div class="section">
@@ -129,14 +148,42 @@
 				<div class="section">
 					<div class="row">
 						<div class="input-field col s12">
-			      <i class="material-icons prefix">mode_edit</i>
-                  <textarea id="Henfe" name="historiaPEnfermedad" th:field="*{historiaPEnfermedad}" class="materialize-textarea"></textarea>
-                  <label for="Henfe">Historia de la presente enfermedad</label>
-              </div>
+			      		     <i class="material-icons prefix">mode_edit</i>
+                  			 <textarea id="Henfe" name="historiaPEnfermedad" th:field="*{historiaPEnfermedad}" class="materialize-textarea"></textarea>
+                 			 <label for="Henfe">Historia de la presente enfermedad</label>
+             			 </div>
 					
 					</div>
 				
 				</div>
+				<div class="section">	
+					<div class="row">
+						     <div class="icon-block">
+           					 <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
+            				 <h5 class="center">Enfermedades</h5>
+          
+         		              </div>
+					</div>
+					
+					<div class="row" >
+					
+					
+					
+							<button class="btn waves-effect red"  type="button" id="agregar" >Agregar
+		 					   <i class="material-icons right">send</i>
+		 					 </button>
+		 					 
+		 					 <div class="row" id="elementos">
+		 					 
+		 					 </div>
+					
+					</div>
+				
+				</div>
+				
+				
+				
+				
 				   <div class="row">
 			    	      <button type='submit'  class='btn waves-effect blue' name="action" id="btnEmpty">Guardar
 			    	      <i class="material-icons right">send</i>
@@ -152,6 +199,76 @@
 	<div th:replace="fragments/footer ::footer">&nbsp;</div>
 
 	<!--llamada de script -->
+	<script type="text/javascript">
+$(document).ready(function(){
+	$('#agregar').on('click',function(){
+		$('#elementos').append(
+				'<div class="row" id="celda"><div class="input-field col s4">'+
+		'<select id="idsistema" name="idenfermedad" class="browser-default"   >  <option value="" th:disabled="disabled" th:selected="selected" >Sistema</option>'+
+		'<option th:each="enfermedadsistema : ${enfermedades}" th:value="${enfermedadsistema.idsistema}" th:text="${enfermedadsistema.nombresistema}">'+
+		'</option>'+
+        '</select></div>'+
+		'<div class="input-field col s4">'+
+		'<select id="tipo"  name="idtipo"  class="browser-default">'+  
+		'<option value=""></option>'+
+		'</select></div>'+
+		'<div class="input-field col s2">'+
+		'<button class=" waves-effect red btn"   id="eliminar">Eliminar</button>'+
+		'</div>'+'</div>');
+		
+		//funcion que agrega elementos dinamicamente
+		
+		
+		$("#tipo").remoteChained(
+				{
+					//	var $scope= angular.element("#elementos").scope();
+						
+					parents: "#idsistema",
+					url: "/fichaadmision/tipos"
+					
+					
+					
+				}	);
+		
+		
+	});
+	
+	$("#elementos").append('<div class="row" id="celda" th:each="evaluacionsistematica :${evaluacionsistematica}"><div class="input-field col s4">'+
+	'<select id="idsistema" name="idenfermedad" th:value="${evaluacionsistematica.idenfermedad}"  class="browser-default"   >  <option value="" th:disabled="disabled" th:selected="selected" >Sistema</option>'+
+	'<option th:each="enfermedadsistema : ${enfermedades}" th:value="${enfermedadsistema.idsistema}" th:text="${enfermedadsistema.nombresistema}">'+
+	'</option>'+
+    '</select></div>'+
+	'<div class="input-field col s4">'+
+	'<select id="tipo" th:value="${evaluacionsistematica.idtipo}"  name="idtipo"  class="browser-default">'+  
+	'<option value=""></option>'+
+	'</select></div>'+
+	'<div class="input-field col s2">'+
+	'<button class=" waves-effect red btn"   id="eliminar">Eliminar</button>'+
+	'</div>'+'</div>').load(
+	
+	$("#tipo").remoteChained(
+			{
+				//	var $scope= angular.element("#elementos").scope();
+					
+				parents: "#idsistema",
+				url: "/fichaadmision/tipos"
+				
+				
+				
+			}	));
+	
+	$('#celda a').click(function(event){
+		
+		$(this).parent().remove();
+	})
+	
+});
+
+
+
+
+</script>
+	
 
 </body>
 </html>

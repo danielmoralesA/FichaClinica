@@ -21,18 +21,32 @@
 $(".button-collapse").sideNav();
 </script> 
 <script type="text/javascript">
-  	$(document).ready(function() {
-    $('select').material_select();
-    	
-  });
-  	
-  	
-  	
-   
- </script>
+	$(document).ready(function() {
+		$('select').material_select();
+		$('ul.tabs').tabs();
+	});
+	
+</script>
 </head>
 <body>
 	<div th:replace="fragments/header ::nav">&nbsp;</div>
+	<!-- tabs -->
+	<div class="row">
+	   <div class="col s12">
+	      <ul class="tabs">
+	        <li class="tab col s3"><a class="teal-text"  target="_self"  th:href="@{/referencias/referenciasadulto}">Datos Clinicos</a></li>
+	        <li class="tab col s3"><a class="teal-text" target="_self" th:href="@{/odontograma/odontogramanew}">Odontograma</a></li>
+	        <li class="tab col s3"><a class="teal-text" target="_self" th:href="@{/traumadentro/traumanew}">Trauma Dentoalveolar</a></li>
+	        
+	        <li class="tab col s3"><a class="teal-text" target="_self" th:href="@{/hallazgoradio/radionew}">Hallazgo Radiografico</a></li>
+	        <li class="tab col s3"><a class="teal-text" target="_self" href="">Necesidad Tratamiento</a></li>
+	        <li class="tab col s3"><a class="teal-text" target="_self" href="" >Consentimiento</a></li>
+	      </ul>
+	    </div>
+	   		
+	
+	
+	</div>
  <!--   cuerpo del trabajo   -->
 	<div class="container">
     <div class="section">
