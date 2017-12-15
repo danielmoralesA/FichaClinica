@@ -138,25 +138,33 @@ $(document).ready(function(){
 	$('#agregar').on('click',function(){
 		$('#elementos').append(
 				'<div class="row" id="celda"><div class="input-field col s3">'+
-		'<select id="pieza" name="pieza" class="browser-default"   >  <option value="" th:disabled="disabled" th:selected="selected" >Diente</option>'+
+		'<select id="pieza" name="pieza"   >  <option value="" th:disabled="disabled" th:selected="selected" >Diente</option>'+
 		'<option th:each="pieza : ${piezas}" th:value="${pieza.idpieza}" th:text="${pieza.nombrepieza}">'+
 		'</option>'+
         '</select></div>'+
 		'<div class="input-field col s2">'+
-		'<button class=" waves-effect red btn"   id="eliminar">Eliminar</button>'+
+		'<button class="btn-floating btn-large waves-effect waves-light red borrar"    id="eliminar"><i class="material-icons">delete</i></button>'+
 		'</div>'+'</div>');
 		
 	
 		
-		
+		$('select').material_select();
 		
 	});
 	
-	$('#celda a').click(function(event){
+	
+	
+	
+	/*$('#celda a').click(function(event){
 		
 		$("#elementos").remove();
-	})
+	})*/
 	
+});
+
+$(document).on('click', '.borrar', function (event) {
+    event.preventDefault();
+    $(this).closest('#celda').remove();
 });
 
 </script>

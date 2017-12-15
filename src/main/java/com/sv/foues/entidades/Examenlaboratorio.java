@@ -52,7 +52,17 @@ public class Examenlaboratorio implements Serializable {
     private Integer glucosa;
     @Column(name = "otros", length = 100)
     private String otros;
-    @JoinColumn(name = "ficha_admision_idFicha", referencedColumnName = "idFicha", nullable = false)
+    @Column(name="plaquetas")
+    private Integer plaquetas;
+    public Integer getPlaquetas() {
+		return plaquetas;
+	}
+
+	public void setPlaquetas(Integer plaquetas) {
+		this.plaquetas = plaquetas;
+	}
+
+	@JoinColumn(name = "ficha_admision_idFicha", referencedColumnName = "idFicha", nullable = false)
     @ManyToOne(optional = false)
     private FichaAdmision fichaadmisionidFicha;
 

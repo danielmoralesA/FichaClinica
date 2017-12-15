@@ -1,12 +1,126 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf/extras/springsecurity">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta charset="UTF-8" />
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+<title>Ficha Admision Principal</title>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet" />
+<link href="../static/css/materialize.css"
+	th:href="@{/css/materialize.css}" type="text/css" rel="stylesheet"
+	media="screen,projection" />
+<link href="../static/css/style.css" th:href="@{/css/style.css}"
+	type="text/css" rel="stylesheet" media="screen,projection" />
+
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="../static/js/materialize.js" th:src="@{/js/materialize.js}"></script>
+<script src="../static/js/init.js" th:src="@{/js/init.js}"></script>
+<script src="../static/js/node_modules/jquery-chained/jquery.chained.js" th:src="@{/js/node_modules/jquery-chained/jquery.chained.js}"></script>
+<script src="../static/js/node_modules/jquery-chained/jquery.chained.remote.js" th:src="@{/js/node_modules/jquery-chained/jquery.chained.remote.js}"></script>
+<script type="text/javascript">
+	$(".button-collapse").sideNav();
+</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('select').material_select();
+		$('ul.tabs').tabs();
+	});
+	
+</script>
 </head>
 <body>
+	<div th:replace="fragments/header ::nav">&nbsp;</div>
+	<div class="container">
+		<div class="section">
+			<div class="row">
+			<div class="section">
+			<h1> Examenes de Laboratorio</h1>
+			</div> 	
+			</div>
+		<form>
+		<div class="row">
+			<div class="input-field col s6">
+				<input type="checkbox" id="tp" name="tp" />
+				<label for="tp">TP</label>
+			
+			</div>
+			<div class="input-field col s6">
+				<input type="checkbox" id="tpt" name="tpt"/>
+				<label for="tpt">TPT</label>
+			</div>
+		
+		
+		</div>
+		<div class="row">
+			<div class="input-field col s6">
+				<input type="checkbox" id="glucosa" name="glucosa"/>
+				<label for="glucosa">Glucosa en Ayunas</label>
+			</div>
+			<div class="input-field col s6">
+				<input type="checkbox" id="plaquetas" name="plaquetas"/>
+				<label for="plaquetas">Plaquetas</label>
+			</div>
+		
+		</div>
+		<div class="row">
+			<div class="input-field col s6">
+				<input type="checkbox" id="hemograma" name="hemograma"/>
+				<label for="hemograma">Hemograma Completo</label>
+			</div>
+		
+		</div>
+		
+		<div class="row">
+			<div class="input-field col s6">
+				<input type="checkbox" id="otros" onChange="validar();"/>
+				<label for="otros">Otros</label>
+			
+			</div>
+			
+		
+		</div>
+		<div class="section">
+		<div class="row">
+		<div class="input-field col s6">
+				<input disabled="disabled" type="text" id="textotros" name="otros" />
+				<label for="textotros">Especifique</label>
+			</div>
+		
+		</div>
+		</div>
+		</form>
+		
+		
 
 
-<div th:replace="fragments/footer ::footer">&nbsp;</div>
+	
+	 </div>
+		<br />
+		<br />
+	</div>
+	
+	<div th:replace="fragments/footer ::footer">&nbsp;</div>
+	
+<script th:inline="javascript">
+	function validar(){
+		var otros=document.getElementById('otros');
+		var txt=document.getElementById("textotros");
+		if(otros.checked){
+			txt.disabled='';
+		}else{
+			txt.value=' ';
+			txt.disabled='disabled';
+		}
+		
+	}
+
+
+</script>
 </body>
 </html>

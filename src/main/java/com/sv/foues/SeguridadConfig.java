@@ -67,7 +67,7 @@ public class SeguridadConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/hallazgoradio/**").permitAll()
 			.antMatchers("/parte").permitAll()
 			.antMatchers("/traumadentro/**").permitAll()
-			//.antMatchers("/admin/usuario").hasAuthority("ADMIN")
+			.antMatchers("/exameneslaboratorio/**").permitAll()			//.antMatchers("/admin/usuario").hasAuthority("ADMIN")
 			.antMatchers("/estrategico/**").hasAnyAuthority("ADMIN","ESTRATEGICO")
 			.antMatchers("/estrategico/**").hasAnyAuthority("ADMIN","ESTRATEGICO")
 			.antMatchers("/principal").permitAll()
